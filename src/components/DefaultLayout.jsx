@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route ,NavLink} from 'react-router-dom';
+import {Route ,NavLink, Switch} from 'react-router-dom';
 import Statistics from './Statistics/Statistics';
 import Calendar from './Calendar/Calendar';
 import Users from './Users/Users';
@@ -25,12 +25,14 @@ function DefaultLayout(props) {
             <div className="pageBody">
                 <div className="header">header</div>
                 <div className="content">
-                    <Route path="/" component={Home} exact/>
-                    <Route path="/workflow" component={Workflow} />
-                    <Route path="/statistics" component={Statistics} />
-                    <Route path="/calendar" component={Calendar} />
-                    <Route path="/users" component={Users} />
-                    <Route path="/settings" component={Settings} />
+                    <Switch>
+                        <Route path="/" component={Home} exact/>
+                        <Route path="/workflow" component={Workflow} />
+                        <Route path="/statistics" component={Statistics} />
+                        <Route path="/calendar" component={Calendar} />
+                        <Route path="/users" component={Users} />
+                        <Route path="/settings" component={Settings} />
+                    </Switch>
                 </div>
             </div>
         </div>
