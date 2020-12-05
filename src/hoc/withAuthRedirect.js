@@ -3,8 +3,8 @@ import {Redirect} from 'react-router-dom';
 
 export const withAuthRedirect = (Component) => {
     function RedirectComponent() {
-        let user = localStorage.getItem('user');
-        if (!user) return <Redirect to='/login' />
+        let auth = localStorage.getItem('auth');
+        if (!auth) return <Redirect to='/login' />
 
         return <Component />
     }

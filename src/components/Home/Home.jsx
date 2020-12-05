@@ -1,4 +1,5 @@
 import React from 'react';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 function Home(props) {
     return (
@@ -6,4 +7,4 @@ function Home(props) {
     );
 }
 
-export default Home;
+export default withAuthRedirect(Home);

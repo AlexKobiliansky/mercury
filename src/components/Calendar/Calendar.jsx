@@ -1,4 +1,5 @@
 import React from 'react';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 function Calendar(props) {
     return (
@@ -6,4 +7,4 @@ function Calendar(props) {
     );
 }
 
-export default Calendar;
+export default withAuthRedirect(Calendar);

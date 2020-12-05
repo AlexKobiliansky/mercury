@@ -1,4 +1,5 @@
 import React from 'react';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 function Users(props) {
     return (
@@ -6,4 +7,4 @@ function Users(props) {
     );
 }
 
-export default Users;
+export default withAuthRedirect(Users);
