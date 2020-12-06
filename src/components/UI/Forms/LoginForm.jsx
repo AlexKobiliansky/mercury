@@ -12,7 +12,6 @@ function LoginForm(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-
     let changeName = (e) => {
         setUsername(e.target.value);
     }
