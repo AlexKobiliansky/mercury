@@ -1,0 +1,39 @@
+.loginScreen
+  background-image: url('../img/bg-login.jpg')
+  background-size: cover
+  background-position: center center
+  background-repeat: no-repeat
+  min-height: 500px
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+
+.loginBlock
+  display: block
+  width: 100%
+  max-width: 1200px
+  background-color: #fff
+  box-shadow: 0 0 30px 5px rgba(#000, .12)
+
+.logo
+  display: inline-block
+  width: 232px
+  img
+    max-width: 100%
+    height: auto
+
+
+
+@media (max-width: 1200px)
+  .loginBlock
+    margin: 15px
+
+
+@media (max-width: 992px)
+  .logo
+    width: 160px
+
+@media (max-width: 480px)
+  .logo
+    width: 120px

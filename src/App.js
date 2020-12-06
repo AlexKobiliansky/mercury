@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.sass';
 import NoAuthLayout from './components/NoAuthLayout';
 import DefaultLayout from './components/DefaultLayout';
 import {Route, Switch} from 'react-router-dom';
