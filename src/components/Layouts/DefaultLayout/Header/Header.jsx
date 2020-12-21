@@ -1,5 +1,7 @@
 import React from 'react';
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+import s from './Header.module.sass';
+import Hamburger from './Hamburger/Hamburger';
 
 function Header(props) {
 
@@ -7,9 +9,22 @@ function Header(props) {
         localStorage.removeItem('auth');
         props.history.push("/login")
     }
+    
     return (
-        <div className="header">
-            <span onClick={logout}>Выйти</span>
+        <div className={s.header}>
+            <div className={s.headerLeft}>
+                <Hamburger
+                    toggleSidebar={props.toggleSidebar}
+                    hiddenSidebar={props.hiddenSidebar} />
+
+                    <div className="searchLine">
+                        asd
+                    </div>
+            </div>
+
+            <div className="headerRight">
+                <span onClick={logout}>Выйти</span>
+            </div>
         </div>
     );
 }

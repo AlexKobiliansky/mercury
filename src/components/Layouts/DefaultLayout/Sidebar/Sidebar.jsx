@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import classNames from 'classnames';
 
 import s from './Sidebar.module.sass'
 
 function Sidebar(props) {
+
     return (
-        <div className={s.sidebar + ' ' + s.s}>
+        <div className={classNames(s.sidebar, {[s.hiddenSidebar]: props.hiddenSidebar})}>
             <nav>
                 <ul>
                     <li><NavLink to="/">Home</NavLink></li>
