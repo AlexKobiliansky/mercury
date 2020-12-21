@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
+import { withRouter } from 'react-router-dom'
 
 import styles from './Forms.module.sass';
 
@@ -24,11 +24,10 @@ function LoginForm(props) {
         e.preventDefault();
         let savedName = JSON.parse(localStorage.getItem('username'));
         if (username === savedName) {
-            console.log('must redirect!')
             localStorage.setItem('auth', true);
-            return <Redirect to='/calendar' />
+            props.history.push("/")
         } else {
-            console.log('something is wrong!');
+            alert('something is wrong!');
         }
     }
 
@@ -50,4 +49,4 @@ function LoginForm(props) {
     );
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

@@ -27,7 +27,7 @@ function RegisterForm(props) {
     let submitForm = (e) => {
         e.preventDefault();
         localStorage.setItem('username', JSON.stringify(username));
-        console.log('registration success!');
+        alert('registration success!');
     }
 
     return (

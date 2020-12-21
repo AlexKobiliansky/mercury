@@ -10,7 +10,7 @@ import RegisterForm from '../../UI/Forms/RegisterForm';
 
 import logo from '../../../img/logo.png';
 import styles from './NoAuthLayout.module.sass'
-import {NavLink} from 'react-router-dom';
+import {NavLink, Redirect} from 'react-router-dom';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -94,6 +94,9 @@ function NoAuthLayout() {
     });
 
     const classes = useStyles();
+
+    let auth = localStorage.getItem('auth');
+    if (auth) return <Redirect to='/' />
 
     return (
         <div className={styles.loginScreen}>
