@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import s from './Header.module.sass';
 import Hamburger from './Hamburger/Hamburger';
+import SearchLine from './SearchLine/SearchLine';
 
 function Header(props) {
 
@@ -9,17 +10,15 @@ function Header(props) {
         localStorage.removeItem('auth');
         props.history.push("/login")
     }
-    
+
     return (
         <div className={s.header}>
             <div className={s.headerLeft}>
                 <Hamburger
                     toggleSidebar={props.toggleSidebar}
-                    hiddenSidebar={props.hiddenSidebar} />
+                    hiddenSidebar={props.hiddenSidebar}/>
 
-                    <div className="searchLine">
-                        asd
-                    </div>
+                <SearchLine/>
             </div>
 
             <div className="headerRight">

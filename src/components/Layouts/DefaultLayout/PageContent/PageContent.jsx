@@ -7,9 +7,11 @@ import Calendar from '../../../Calendar/Calendar';
 import Users from '../../../Users/Users';
 import Settings from '../../../Settings/Settings';
 
+import s from './PageContent.module.sass';
+
 function PageContent(props) {
     return (
-        <div className="pageContent">
+        <div className={s.pageContent}>
             <Switch>
                 <Route path="/" component={Home} exact/>
                 <Route path="/workflow" component={Workflow} />

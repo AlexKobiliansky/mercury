@@ -5,8 +5,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/styles';
-import LoginForm from '../../UI/Forms/LoginForm';
-import RegisterForm from '../../UI/Forms/RegisterForm';
+import LoginForm from '../../ui/Forms/LoginForm';
+import RegisterForm from '../../ui/Forms/RegisterForm';
 
 import logo from '../../../img/logo.png';
 import styles from './NoAuthLayout.module.sass'
