@@ -4,6 +4,10 @@ import Box from "../ui/atoms/Box/Box";
 import s from './Home.module.sass'
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
+import ReactHighcharts from 'react-highcharts';
+
+//config
+import SalesChart from "../../config/SalesChart.config";
 
 
 const name = JSON.parse(localStorage.getItem('username'))
@@ -23,6 +27,7 @@ function Home(props) {
                             <h2>Your sales</h2>
                             <Select data={forSalesSelect}/>
                         </BoxHeader>
+                        <ReactHighcharts config = {SalesChart}></ReactHighcharts>
                     </div>
                 </Box>
 
