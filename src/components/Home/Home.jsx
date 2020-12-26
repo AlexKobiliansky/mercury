@@ -4,25 +4,22 @@ import Box from "../ui/atoms/Box/Box";
 import s from './Home.module.sass'
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
-import ReactHighcharts from 'react-highcharts';
+
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
 //config
 import SalesChart from "../../config/SalesChart.config";
 import ReportChart from "../../config/ReportChart.config";
 
 
-const name = JSON.parse(localStorage.getItem('username'))
+
 
 function Home(props) {
 
     let forSalesSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
     let forReportSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
-
-    let chart2 = React.createRef();
-
-    let rerenderBla = () => {
-        console.log(chart2)
-    }
+    const name = JSON.parse(localStorage.getItem('username'))
 
     return (
         <div className={s.home}>
@@ -34,7 +31,10 @@ function Home(props) {
                             <h2>Your sales</h2>
                             <Select data={forSalesSelect}/>
                         </BoxHeader>
-                        <ReactHighcharts config = {SalesChart}></ReactHighcharts>
+                        <HighchartsReact
+                            highcharts={Highcharts}
+                            options={SalesChart}
+                        />
                     </div>
                 </Box>
 
@@ -44,11 +44,12 @@ function Home(props) {
                             <h2>Report</h2>
                             <Select data={forReportSelect}/>
                         </BoxHeader>
-                        <ReactHighcharts config = {ReportChart} ref={chart2}></ReactHighcharts>
+                        <HighchartsReact
+                            highcharts={Highcharts}
+                            options={ReportChart}
+                        />
                     </div>
                 </Box>
-
-                <span onClick={rerenderBla}>update chart</span>
             </div>
         </div>
     );
