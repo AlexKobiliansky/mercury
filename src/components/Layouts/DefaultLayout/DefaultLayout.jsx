@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import s from './DefaultLayout.module.sass';
 
 function DefaultLayout(props) {
-    const [hiddenSidebar, setHiddenSidebar] = useState(false);
+    const [hiddenSidebar, setHiddenSidebar] = useState(true);
 
     const toggleSidebar = ()=> {
         setHiddenSidebar(!hiddenSidebar);

@@ -1,8 +1,9 @@
 const SalesChart = {
   chart: {
   type: 'pie',
-  height: '285'
-  // width: '400'
+  // height: '285',
+  // width: '400',
+  marginTop: 40
 },
 plotOptions: {
   pie: {

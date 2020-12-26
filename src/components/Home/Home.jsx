@@ -8,6 +8,7 @@ import ReactHighcharts from 'react-highcharts';
 
 //config
 import SalesChart from "../../config/SalesChart.config";
+import ReportChart from "../../config/ReportChart.config";
 
 
 const name = JSON.parse(localStorage.getItem('username'))
@@ -16,6 +17,12 @@ function Home(props) {
 
     let forSalesSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
     let forReportSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
+
+    let chart2 = React.createRef();
+
+    let rerenderBla = () => {
+        console.log(chart2)
+    }
 
     return (
         <div className={s.home}>
@@ -37,8 +44,11 @@ function Home(props) {
                             <h2>Report</h2>
                             <Select data={forReportSelect}/>
                         </BoxHeader>
+                        <ReactHighcharts config = {ReportChart} ref={chart2}></ReactHighcharts>
                     </div>
                 </Box>
+
+                <span onClick={rerenderBla}>update chart</span>
             </div>
         </div>
     );
