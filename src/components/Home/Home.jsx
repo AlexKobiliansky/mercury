@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import Box from "../ui/atoms/Box/Box";
 import s from './Home.module.sass'
@@ -12,13 +12,14 @@ import HighchartsReact from 'highcharts-react-official'
 import SalesChart from "../../config/SalesChart.config";
 import ReportChart from "../../config/ReportChart.config";
 
-
-
-
 function Home(props) {
 
     let forSalesSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
     let forReportSelect = ['Last Year', 'Last 6 month', 'Last Month', 'Last Week', 'Yesterday'];
+    let totalSales = 1560;
+
+    let [title, setTitle] = useState('200');
+
     const name = JSON.parse(localStorage.getItem('username'))
 
     return (
@@ -47,9 +48,12 @@ function Home(props) {
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={ReportChart}
+                            oneToOne={true}
                         />
                     </div>
                 </Box>
+
+                <span>change title</span>
             </div>
         </div>
     );

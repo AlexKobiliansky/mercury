@@ -13,17 +13,17 @@ function DefaultLayout(props) {
     const toggleSidebar = ()=> {
         setHiddenSidebar(!hiddenSidebar);
 
-
-        //todo: creates redundant charts after transition between routes. Fix this
         for (let i = 0; i < Highcharts.charts.length; i++) {
             if (Highcharts.charts[i] !== undefined) {
                 setTimeout(function(){
                     Highcharts.charts[i].reflow();
-                }, 250)
+                }, 200)
+            } else {
+                Highcharts.charts.splice(i, 1)
             }
         }
 
-        //console.log(Highcharts.charts)
+        // console.log(Highcharts.charts)
     }
 
     return (
