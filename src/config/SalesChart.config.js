@@ -14,7 +14,7 @@ const SalesChart = {
     title: {
         verticalAlign: 'middle',
         floating: true,
-        text: '1,560',
+        text: 'sales',
         x: -65,
         y: 28,
         style: {'color': '#8492af', 'fontSize': '36px', 'fontWeight': '700', 'font-family': 'Roboto, san-serif'},

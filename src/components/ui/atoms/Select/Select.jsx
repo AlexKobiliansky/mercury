@@ -3,7 +3,7 @@ import React from 'react';
 function Select(props) {
 
     let changeOption = (e) => {
-        console.log(e.target.value);
+        props.changeOption(e.target.value)
     }
 
     return (
