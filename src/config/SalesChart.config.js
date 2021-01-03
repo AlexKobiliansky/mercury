@@ -8,8 +8,15 @@ const SalesChart = {
     plotOptions: {
         pie: {
             shadow: false,
-            colors: ['#25396e', '#3755a4', '#4164c2', '#4164c2', '#4b74e0', '#5584ff']
-        }
+            colors: ['#25396e', '#3755a4', '#4164c2', '#4164c2', '#4b74e0', '#5584ff'],
+            point: {
+                events: {
+                    legendItemClick: function (e) {
+                        e.preventDefault()
+                    }
+                }
+            },
+        },
     },
     title: {
         verticalAlign: 'middle',
@@ -36,9 +43,10 @@ const SalesChart = {
         itemMarginBottom: 5
     },
     series: [{
-        data: [
-            ["Websites", 6], ["Logo", 4], ["Social Media", 7], ["Adwords", 2], ["E-Commerce", 5]
-        ],
+        name: 'Sales',
+        // data: [
+        //     ["Websites", 6], ["Logo", 4], ["Social Media", 7], ["Adwords", 2], ["E-Commerce", 5]
+        // ],
         innerSize: '60%',
         showInLegend: true,
         dataLabels: {

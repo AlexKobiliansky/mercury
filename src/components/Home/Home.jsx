@@ -30,7 +30,7 @@ function Home(props) {
             ["Websites", 16], ["Logo", 42], ["Social Media", 70], ["Adwords", 20], ["E-Commerce", 125]
         ]
     };
-    
+
     let ReportsData = {
         'Last Year': [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220],
         'Last 6 month': [3400, 3320, 1400, 2700, 3700, 1620, 2670, 1433, 2200, 3310, 3150, 2220],
@@ -57,6 +57,11 @@ function Home(props) {
 
         return sum;
     }
+
+    SalesChartConfig.series[0].data = SalesData["Last Year"];
+    SalesChartConfig.title.text = totalSalesCount(SalesData["Last Year"]).toLocaleString('en-US');
+
+    ReportChartConfig.series[0].data = ReportsData["Last Year"]
 
     let [salesChartData, setSalesChartData] = useState(SalesChartConfig);
     let [reportsChartData, setReportsChartData] = useState(ReportChartConfig);
@@ -113,6 +118,7 @@ function Home(props) {
                         />
                     </div>
                 </Box>
+
             </div>
         </div>
     );

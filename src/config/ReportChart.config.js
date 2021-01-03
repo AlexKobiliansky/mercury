@@ -42,15 +42,14 @@ const ReportChart = {
       marker: {
         enable: false,
         radius: 2,
-      }
+      },
     }
   },
   legend: {
     enabled: false
   },
   series: [{
-    name: null,
-    data: [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220]
+    name: 'Total sales',
   }],
   credits: {
     enabled: false
