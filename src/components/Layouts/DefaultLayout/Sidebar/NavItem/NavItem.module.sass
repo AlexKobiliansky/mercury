@@ -1,0 +1,30 @@
+@import 'mixins'
+@import 'vars'
+
+li
+  a
+    display: flex
+    line-height: 1
+    font-size: 24px
+    font-weight: 500
+    color: #fff
+    align-items: center
+    padding: 35px 50px 40px 40px
+    border-left-width: 10px
+    border-left-style: solid
+    border-left-color: transparent
+    +mt(.3s)
+    img
+      height: 22px
+      width: auto
+    &.active
+      border-left-color: $acc-blue
+      background-color: #122143
+    &:hover
+      background-color: #122143
+
+
+.imgWrap
+  width: 25px
+  text-align: center
+  margin-right: 12px

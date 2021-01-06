@@ -9,7 +9,7 @@ import LoginForm from '../../ui/Forms/LoginForm';
 import RegisterForm from '../../ui/Forms/RegisterForm';
 
 import logo from '../../../img/logo.png';
-import styles from './NoAuthLayout.module.sass'
+import s from './NoAuthLayout.module.sass'
 import {NavLink, Redirect} from 'react-router-dom';
 
 function TabPanel(props) {
@@ -99,10 +99,10 @@ function NoAuthLayout() {
     if (auth) return <Redirect to='/' />
 
     return (
-        <div className={styles.loginScreen}>
-            <div className={styles.loginBlock}>
+        <div className={s.loginScreen}>
+            <div className={s.loginBlock}>
                 <AppBar position="static" className={classes.header}>
-                    <NavLink to='/' className={styles.logo}><img src={logo} alt="Mercury"/></NavLink>
+                    <NavLink to='/' className={s.logo}><img src={logo} alt="Mercury"/></NavLink>
                     <Tabs value={value} onChange={handleChange} className={classes.tabs} classes={{ indicator: classes.indicator }}>
                         <Tab label="Register" {...a11yProps(0)} className={classes.tab}/>
                         <Tab label="Login" {...a11yProps(1)} className={classes.tab}/>
