@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactSelect from 'react-select'
 
-import './Select.module.sass'
+import s from './Select.module.sass'
 
 function Select(props) {
 
@@ -54,7 +54,7 @@ function Select(props) {
     }
 
     return (
-        <label>
+        <label className={s.selectLabel}>
             <span>Period:</span>
             <ReactSelect
                 options={options}

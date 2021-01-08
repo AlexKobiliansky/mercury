@@ -1,0 +1,32 @@
+@import 'vars'
+
+.avatar
+  position: relative
+  padding-right: 22px
+  cursor: pointer
+  img
+    width: 53px
+    height: 53px
+    border-radius: 50%
+  &:before
+    content: ''
+    position: absolute
+    border: 7px solid transparent
+    border-top: 7px solid $text
+    right: 0
+    top: 50%
+    transform: translateY(-50%)
+    z-index: 2
+
+.menu
+  padding: 100px!important
+  a, span
+    display: block
+    width: 100%
+    color: $text
+    padding: 3px 25px 3px 10px
+    cursor: pointer
+    min-width: 150px
+    &:hover
+      background-color: $acc-blue
+      color: #fff

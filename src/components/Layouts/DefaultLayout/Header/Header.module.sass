@@ -1,14 +1,44 @@
+@import 'mixins'
+
 .header
   display: flex
   justify-content: space-between
   align-items: center
   padding: 33px 50px 37px
   border-bottom: 1px solid #d4d9e3
+  .button
+    padding-left: 50px
+    &:before
+      content: ''
+      position: absolute
+      width: 12px
+      height: 12px
+      +bg-cover
+      background-image: url('../../../../img/icons/crest-icon.svg')
+      left: 25px
+      top: 50%
+      transform: translateY(-50%)
+      opacity: .5
+      +mt(.3s)
+    &:hover
+      &:before
+        opacity: 1
+
 
 .headerLeft
   display: inline-flex
   align-items: center
   height: 28px
+
+.headerRight
+  display: inline-flex
+  align-items: center
+
+.badgesWrap
+  margin: 0 40px 0 50px
+  white-space: nowrap
+
+
   
 
 
