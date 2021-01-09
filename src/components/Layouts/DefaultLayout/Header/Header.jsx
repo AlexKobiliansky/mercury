@@ -3,14 +3,13 @@ import Hamburger from './Hamburger/Hamburger';
 import SearchLine from './SearchLine/SearchLine';
 import UserMnu from "./UserMnu/UserMnu";
 import s from './Header.module.sass';
+import Button from "../../../ui/atoms/Button/Button";
 
 //Material UI
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from "../../../ui/atoms/Button/Button";
-
 
 const useStyles = makeStyles((theme) => ({
     root: {

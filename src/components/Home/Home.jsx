@@ -10,6 +10,8 @@ import HighchartsReact from 'highcharts-react-official';
 //config
 import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
+import Label from "../ui/atoms/Label/Label";
+import Task from "../Workflow/Task/Task";
 
 function Home(props) {
 
@@ -87,38 +89,56 @@ function Home(props) {
         <div className={s.home}>
             <h1>Hello {name}!</h1>
             <div className={s.homeTop}>
-                <Box>
-                    <div className={s.boxPadding}>
-                        <BoxHeader>
-                            <h2>Your sales</h2>
-                            <Select
-                                data={SalesDataSelect}
-                                changeOption = {changeSalesSelect}
-                            />
-                        </BoxHeader>
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={salesChartData}
+                <Box customClass={s.boxPadding}>
+                    <BoxHeader>
+                        <h2>Your sales</h2>
+                        <Select
+                            data={SalesDataSelect}
+                            changeOption={changeSalesSelect}
                         />
-                    </div>
+                    </BoxHeader>
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={salesChartData}
+                    />
+                </Box>
+
+                <Box customClass={s.boxPadding}>
+                    <BoxHeader>
+                        <h2>Report</h2>
+                        <Select
+                            data={ReportsDataSelect}
+                            changeOption={changeReportSelect}
+                        />
+                    </BoxHeader>
+                    <HighchartsReact
+                        highcharts={Highcharts}
+                        options={reportsChartData}
+                    />
+                </Box>
+            </div>
+
+            <div className={s.homeBottom}>
+                <Box>
+                    <BoxHeader customClass={s.paddingHeader}>
+                        <h3>Tasks</h3>
+                        <div className={s.labelsWrap}>
+                            <Label>5</Label>
+                            <Label customClass={s.redLabel}>2</Label>
+                        </div>
+                    </BoxHeader>
+                    <Task />
+                    <Task />
+                    <Task />
                 </Box>
 
                 <Box>
-                    <div className={s.boxPadding}>
-                        <BoxHeader>
-                            <h2>Report</h2>
-                            <Select
-                                data={ReportsDataSelect}
-                                changeOption = {changeReportSelect}
-                            />
-                        </BoxHeader>
-                        <HighchartsReact
-                            highcharts={Highcharts}
-                            options={reportsChartData}
-                        />
-                    </div>
+                    Box2
                 </Box>
 
+                <Box>
+                    Box3
+                </Box>
             </div>
         </div>
     );

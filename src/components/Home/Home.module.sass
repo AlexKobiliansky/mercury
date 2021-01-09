@@ -1,3 +1,5 @@
+@import 'vars'
+
 .boxPadding
   padding: 35px
 
@@ -5,9 +7,26 @@
   display: flex
   flex-wrap: wrap
   justify-content: space-between
+  margin-bottom: 42px
   &>div
     &:first-child
       width: 600px
     &:nth-child(2)
       overflow: hidden
       width: calc(100% - 640px)
+
+.homeBottom
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-gap: 42px
+
+.redLabel
+  background-color: $acc-red!important
+  margin-left: 12px
+
+.paddingHeader
+  padding: 20px 30px
+
+.labelsWrap
+  display: flex
+  align-items: center
