@@ -1,0 +1,44 @@
+.move
+  padding: 35px 32px 34px
+  display: flex
+  align-items: center
+  font-size: 14px
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    width: 1px
+    height: 64px
+    background-color: #dadee7
+    left: 56px
+    top: calc(100% - 32px)
+  &:last-child
+    &:after
+      display: none
+
+.content
+  width: calc(100% - 46px)
+  padding-left: 25px
+
+.title
+  margin-bottom: 5px
+  //white-space: nowrap
+  //overflow: hidden
+  //text-overflow: ellipsis
+  .name, .object
+    font-weight: 500
+  .action
+    color: #8492af
+
+.time
+  display: flex
+  align-items: center
+  color: #8492af
+  font-size: 0
+  svg
+    fill: #8492af
+    width: 17px
+    height: auto
+    margin-right: 6px
+  &Text
+    font-size: 14px

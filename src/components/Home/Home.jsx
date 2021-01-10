@@ -16,8 +16,7 @@ import Message from "./Message/Message";
 
 //images
 import ava1 from '../../img/message-ava-1.jpg';
-import ava2 from '../../img/message-ava-2.jpg';
-import ava3 from '../../img/message-ava-3.jpg';
+import Move from "./Move/Move";
 
 function Home(props) {
 
@@ -154,7 +153,17 @@ function Home(props) {
                 </Box>
 
                 <Box>
-                    Box3
+                    <BoxHeader customClass={s.paddingHeader}>
+                        <h3>Activity</h3>
+                        <div className={s.labelsWrap}>
+                            <Label>10</Label>
+                        </div>
+                    </BoxHeader>
+
+                    <Move img={ava1}/>
+                    <Move img={ava1}/>
+                    <Move img={ava1}/>
+                    <Move img={ava1}/>
                 </Box>
             </div>
         </div>
