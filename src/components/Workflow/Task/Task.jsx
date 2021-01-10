@@ -2,15 +2,23 @@ import React from 'react';
 import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
 
-//Material UI imports
+//Material UI
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { makeStyles } from '@material-ui/core/styles';
 
 //styles
 import s from './Task.module.sass'
 
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        marginLeft: 'auto',
+
+    }
+}));
 
 function Task(props) {
 
@@ -25,6 +33,10 @@ function Task(props) {
         setAnchorEl(null);
     };
 
+    let classes = useStyles();
+
+
+
 
     return (
         <div className={classnames(s.task, {[props.customClass] : props.customClass})}>
@@ -35,6 +47,7 @@ function Task(props) {
             </div>
             <IconButton
                 onClick={handleClick}
+                classes={{root: classes.root}}
             >
                 <MoreVertIcon />
             </IconButton>

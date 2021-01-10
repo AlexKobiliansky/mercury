@@ -19,6 +19,12 @@
   display: grid
   grid-template-columns: repeat(3, 1fr)
   grid-gap: 42px
+  .task
+    border: none
+    border-bottom: 1px solid #d4d9e3
+    margin-bottom: 0
+    &:last-child
+      border-bottom: none
 
 .redLabel
   background-color: $acc-red!important
@@ -26,6 +32,7 @@
 
 .paddingHeader
   padding: 20px 30px
+  border-bottom: 1px solid #d4d9e3
 
 .labelsWrap
   display: flex

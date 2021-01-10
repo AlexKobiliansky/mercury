@@ -127,9 +127,9 @@ function Home(props) {
                             <Label customClass={s.redLabel}>2</Label>
                         </div>
                     </BoxHeader>
-                    <Task />
-                    <Task />
-                    <Task />
+                    <Task customClass={s.task}/>
+                    <Task customClass={s.task}/>
+                    <Task customClass={s.task}/>
                 </Box>
 
                 <Box>
