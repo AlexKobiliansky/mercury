@@ -12,6 +12,12 @@ import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
 import Label from "../ui/atoms/Label/Label";
 import Task from "../Workflow/Task/Task";
+import Message from "./Message/Message";
+
+//images
+import ava1 from '../../img/message-ava-1.jpg';
+import ava2 from '../../img/message-ava-2.jpg';
+import ava3 from '../../img/message-ava-3.jpg';
 
 function Home(props) {
 
@@ -130,10 +136,21 @@ function Home(props) {
                     <Task customClass={s.task}/>
                     <Task customClass={s.task}/>
                     <Task customClass={s.task}/>
+                    <Task customClass={s.task}/>
                 </Box>
 
                 <Box>
-                    Box2
+                    <BoxHeader customClass={s.paddingHeader}>
+                        <h3>Messages</h3>
+                        <div className={s.labelsWrap}>
+                            <Label>2</Label>
+                        </div>
+                    </BoxHeader>
+
+                    <Message img={ava1}/>
+                    <Message img={ava1}/>
+                    <Message img={ava1}/>
+                    <Message img={ava1}/>
                 </Box>
 
                 <Box>

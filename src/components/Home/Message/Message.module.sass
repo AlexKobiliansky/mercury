@@ -1,0 +1,43 @@
+@import 'mixins'
+
+.message
+  padding: 24px 32px 18px
+  display: flex
+  font-size: 14px
+  border-bottom: 1px solid #d4d9e3
+
+.content
+  padding-left: 25px
+  width: calc(100% - 46px)
+
+.title
+  white-space: nowrap
+  margin-bottom: 5px
+
+.name
+  display: inline-block
+  font-weight: 500
+  margin-right: 7px
+
+.time
+  color: #8492af
+
+.desc
+  white-space: nowrap
+  margin-bottom: 10px
+  text-overflow: ellipsis
+  overflow: hidden
+
+.icons
+  display: flex
+  align-items: center
+  font-size: 0
+  svg
+    width: 16px
+    height: auto
+    margin-right: 12px
+    fill: #8492af
+    cursor: pointer
+    +mt(.2s)
+    &:hover
+      fill: darken(#8492af, 10%)
