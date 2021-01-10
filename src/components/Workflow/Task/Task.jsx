@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
+import TruncateMarkup from 'react-truncate-markup';
 
 //Material UI
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,6 @@ import s from './Task.module.sass'
 const useStyles = makeStyles((theme) => ({
     root: {
         marginLeft: 'auto',
-
     }
 }));
 
@@ -35,14 +35,13 @@ function Task(props) {
 
     let classes = useStyles();
 
-
-
-
     return (
         <div className={classnames(s.task, {[props.customClass] : props.customClass})}>
             <Label>N</Label>
             <div className={s.content}>
-                <div className={s.title}>New website for JCD.pl</div>
+                <TruncateMarkup lines={1} ellipsis={' (...)'}>
+                    <div className={s.title}>New website for JCD.pl Lorem ipsum dolor sit amet, consectetur.</div>
+                </TruncateMarkup>
                 <div className={s.status}>5 days left</div>
             </div>
             <IconButton

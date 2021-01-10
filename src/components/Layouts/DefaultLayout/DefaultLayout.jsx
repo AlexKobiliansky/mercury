@@ -17,7 +17,7 @@ function DefaultLayout(props) {
             if (Highcharts.charts[i] !== undefined) {
                 setTimeout(function(){
                     Highcharts.charts[i].reflow();
-                }, 200)
+                }, 250)
             } else {
                 Highcharts.charts.splice(i, 1)
             }

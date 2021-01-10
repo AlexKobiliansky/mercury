@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactSVG } from 'react-svg';
 import Label from "../../ui/atoms/Label/Label";
-import Truncate from 'react-truncate';
+import TruncateMarkup from 'react-truncate-markup';
 
 import answerSvg from '../../../img/icons/answer-icon.svg';
 import optionsSvg from '../../../img/icons/options-icon.svg';
@@ -19,9 +19,9 @@ function Message(props) {
                     <span className={s.time}>5 minutes ago</span>
                 </div>
                 <div className={s.desc}>
-                    <Truncate lines={1} ellipsis={<span> (...) </span>}>
-                        Hey You! It’s me again :-) I attached new Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id impedit maxime molestias officiis praesentium qui, velit!
-                    </Truncate>
+                    <TruncateMarkup lines={1} ellipsis={' (...)'}>
+                        <span>Hey You! It’s me again :-) I attached new Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id impedit maxime molestias officiis praesentium qui, velit!</span>
+                    </TruncateMarkup>
                 </div>
                 <div className={s.icons}>
                     <ReactSVG src={answerSvg} wrapper='span'/>
