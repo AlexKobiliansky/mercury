@@ -18,11 +18,13 @@ function Message(props) {
                     <span className={s.name}>Nina Jones</span>
                     <span className={s.time}>5 minutes ago</span>
                 </div>
-                <div className={s.desc}>
-                    <TruncateMarkup lines={1} ellipsis={' (...)'}>
-                        <span>Hey You! It’s me again :-) I attached new Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id impedit maxime molestias officiis praesentium qui, velit!</span>
-                    </TruncateMarkup>
-                </div>
+                <TruncateMarkup lines={1} ellipsis={' (...)'}>
+                    <div className={s.desc}>
+                        Hey You! It’s me again :-) I attached new Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Id impedit maxime molestias officiis praesentium qui, velit!
+                    </div>
+                </TruncateMarkup>
+
                 <div className={s.icons}>
                     <ReactSVG src={answerSvg} wrapper='span'/>
                     <ReactSVG src={optionsSvg} wrapper='span'/>

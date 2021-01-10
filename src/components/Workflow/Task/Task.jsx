@@ -42,6 +42,7 @@ function Task(props) {
                 <TruncateMarkup lines={1} ellipsis={' (...)'}>
                     <div className={s.title}>New website for JCD.pl Lorem ipsum dolor sit amet, consectetur.</div>
                 </TruncateMarkup>
+
                 <div className={s.status}>5 days left</div>
             </div>
             <IconButton
