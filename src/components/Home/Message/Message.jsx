@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
 import classnames from 'classnames';
-
+import ReactTimeAgo from 'react-time-ago'
 
 //Material UI
 import Menu from '@material-ui/core/Menu';
@@ -42,7 +42,7 @@ function Message(props) {
             <div className={s.content}>
                 <div className={s.title}>
                     <span className={s.name}>{props.name}</span>
-                    <span className={s.time}>{props.time}</span>
+                    <span className={s.time}><ReactTimeAgo date={props.time} locale="en-US"/></span>
                 </div>
                 <TruncateMarkup lines={1} ellipsis={' (...)'}>
                     <div className={s.desc}>

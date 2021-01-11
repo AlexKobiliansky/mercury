@@ -13,12 +13,14 @@ import ava4 from "img/message-ava-4.jpg";
 
 function MessagesBox(props) {
 
+    var d = new Date();
+
     let messages = [
         {
             id: 1,
             img: ava1,
             name: 'Nina Jones',
-            time: '5 minutes ago',
+            time: d.setMinutes(d.getMinutes() - 15),
             message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid at, beatae cumque dicta dolorem est fugit ipsa laudantium pariatur, praesentium ratione rem, similique? Culpa.',
             read: 0
         },
@@ -26,7 +28,7 @@ function MessagesBox(props) {
             id: 2,
             img: ava1,
             name: 'Nina Jones',
-            time: '15 minutes ago',
+            time: d.setMinutes(d.getMinutes() - 22),
             message: 'Some message from Nina',
             read: 0
         },
@@ -34,7 +36,7 @@ function MessagesBox(props) {
             id: 3,
             // img: ava2,
             name: 'James Smith',
-            time: '2 days ago',
+            time: d.setDate(d.getDate() - 2),
             message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias',
             read: 1
         },
@@ -42,7 +44,7 @@ function MessagesBox(props) {
             id: 4,
             img: ava3,
             name: 'Alex Clooney',
-            time: '3 days ago',
+            time: d.setDate(d.getDate() - 19),
             message: 'I am not George...',
             read: 0
         },
@@ -50,7 +52,7 @@ function MessagesBox(props) {
             id: 5,
             img: ava3,
             name: 'Alex Clooney',
-            time: '2 weeks ago',
+            time: d.setDate(d.getDate() - 1),
             message: 'Alias aliquid at, beatae cumque dicta dolorem est fugit ipsa laudantium pariatur, praesentium ratione rem, similique? Culpa.',
             read: 1
         },
@@ -58,7 +60,7 @@ function MessagesBox(props) {
             id: 6,
             img: ava4,
             name: 'Alexandra Spears',
-            time: '2 weeks ago',
+            time: d.setDate(d.getDate() - 14),
             message: 'I am pregnant! But I dont know from who!?',
             read: 1
         },
@@ -68,7 +70,7 @@ function MessagesBox(props) {
 
     let unreadMessages = messages.reduce((number, current) => {
         return !current.read ? ++number : number
-    }, 0)
+    }, 0);
 
     return (
         <Box>
