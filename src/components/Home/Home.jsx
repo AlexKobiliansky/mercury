@@ -128,8 +128,8 @@ function Home(props) {
                     <BoxHeader customClass={s.paddingHeader}>
                         <h3>Tasks</h3>
                         <div className={s.labelsWrap}>
-                            <Label>5</Label>
-                            <Label customClass={s.redLabel}>2</Label>
+                            <Label title={5}></Label>
+                            <Label customClass={s.redLabel} title={2} />
                         </div>
                     </BoxHeader>
                     <Task customClass={s.task}/>
@@ -144,7 +144,7 @@ function Home(props) {
                     <BoxHeader customClass={s.paddingHeader}>
                         <h3>Activity</h3>
                         <div className={s.labelsWrap}>
-                            <Label>10</Label>
+                            <Label title='10'></Label>
                         </div>
                     </BoxHeader>
 

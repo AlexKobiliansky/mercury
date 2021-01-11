@@ -75,7 +75,7 @@ function MessagesBox(props) {
             <BoxHeader customClass={hs.paddingHeader}>
                 <h3>Messages</h3>
                 <div className={hs.labelsWrap}>
-                    {unreadMessages && unreadMessages>0 ? <Label>{unreadMessages}</Label> : ''}
+                    {unreadMessages && unreadMessages>0 ? <Label title={unreadMessages} /> : ''}
                 </div>
             </BoxHeader>
 
