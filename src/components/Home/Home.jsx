@@ -6,17 +6,17 @@ import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import Move from "./Move/Move";
+import MessagesBox from "./MessagesBox/MessagesBox";
 
 //config
 import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
 import Label from "../ui/atoms/Label/Label";
 import Task from "../Workflow/Task/Task";
-import Message from "./Message/Message";
 
 //images
 import ava1 from '../../img/message-ava-1.jpg';
-import Move from "./Move/Move";
 
 function Home(props) {
 
@@ -138,19 +138,7 @@ function Home(props) {
                     <Task customClass={s.task}/>
                 </Box>
 
-                <Box>
-                    <BoxHeader customClass={s.paddingHeader}>
-                        <h3>Messages</h3>
-                        <div className={s.labelsWrap}>
-                            <Label>2</Label>
-                        </div>
-                    </BoxHeader>
-
-                    <Message img={ava1}/>
-                    <Message img={ava1}/>
-                    <Message img={ava1}/>
-                    <Message img={ava1}/>
-                </Box>
+                <MessagesBox />
 
                 <Box>
                     <BoxHeader customClass={s.paddingHeader}>

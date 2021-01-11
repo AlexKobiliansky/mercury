@@ -52,9 +52,8 @@ function Task(props) {
                 <MoreVertIcon />
             </IconButton>
             <Menu
-                id="long-menu"
                 anchorEl={anchorEl}
-                keepMounted
+                disableScrollLock={true}
                 open={open}
                 onClose={handleClose}
             >

@@ -7,7 +7,7 @@ import s from './Label.module.sass';
 function Label(props) {
     return (
         <div className={classnames(s.label, {[props.customClass] : props.customClass})}>
-            {props.img ? <img src={props.img} alt={props.children}/> : props.children}
+            {props.img ? <img src={props.img} alt={props.title} /> : props.title}
         </div>
     );
 }
