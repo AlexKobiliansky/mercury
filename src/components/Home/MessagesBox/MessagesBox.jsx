@@ -34,7 +34,7 @@ function MessagesBox(props) {
         },
         {
             id: 3,
-            // img: ava2,
+            img: ava2,
             name: 'James Smith',
             time: d.setDate(d.getDate() - 2),
             message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias',
@@ -82,7 +82,7 @@ function MessagesBox(props) {
             </BoxHeader>
 
             {
-                messages && items.map(message => {
+                items && items.map(message => {
                     return <Message
                         key={message.id}
                         img={message.img}

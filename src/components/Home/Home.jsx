@@ -1,22 +1,18 @@
 import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import Box from "../ui/atoms/Box/Box";
-import s from './Home.module.sass'
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import Move from "./Move/Move";
 import MessagesBox from "./MessagesBox/MessagesBox";
-
+import TasksBox from "./TasksBox/TasksBox";
 //config
 import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
-import Label from "../ui/atoms/Label/Label";
-import Task from "../Workflow/Task/Task";
-
-//images
-import ava1 from '../../img/message-ava-1.jpg';
+//styles
+import s from './Home.module.sass';
+import ActivityBox from "./ActivityBox/ActivityBox";
 
 function Home(props) {
 
@@ -124,35 +120,9 @@ function Home(props) {
             </div>
 
             <div className={s.homeBottom}>
-                <Box>
-                    <BoxHeader customClass={s.paddingHeader}>
-                        <h3>Tasks</h3>
-                        <div className={s.labelsWrap}>
-                            <Label title={5}></Label>
-                            <Label customClass={s.redLabel} title={2} />
-                        </div>
-                    </BoxHeader>
-                    <Task customClass={s.task}/>
-                    <Task customClass={s.task}/>
-                    <Task customClass={s.task}/>
-                    <Task customClass={s.task}/>
-                </Box>
-
+                <TasksBox />
                 <MessagesBox />
-
-                <Box>
-                    <BoxHeader customClass={s.paddingHeader}>
-                        <h3>Activity</h3>
-                        <div className={s.labelsWrap}>
-                            <Label title='10'></Label>
-                        </div>
-                    </BoxHeader>
-
-                    <Move img={ava1}/>
-                    <Move img={ava1}/>
-                    <Move img={ava1}/>
-                    <Move img={ava1}/>
-                </Box>
+                <ActivityBox />
             </div>
         </div>
     );

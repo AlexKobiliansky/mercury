@@ -13,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //styles
 import s from './Task.module.sass'
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         marginLeft: 'auto',
@@ -35,12 +34,14 @@ function Task(props) {
 
     let classes = useStyles();
 
+    let letter = props.title.charAt(0);
+
     return (
         <div className={classnames(s.task, {[props.customClass] : props.customClass})}>
-            <Label>N</Label>
+            <Label title={letter}/>
             <div className={s.content}>
                 <TruncateMarkup lines={1} ellipsis={' (...)'}>
-                    <div className={s.title}>New website for JCD.pl Lorem ipsum dolor sit amet, consectetur.</div>
+                    <div className={s.title}>{props.title}</div>
                 </TruncateMarkup>
 
                 <div className={s.status}>5 days left</div>
