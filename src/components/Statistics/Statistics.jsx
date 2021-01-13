@@ -10,9 +10,11 @@ import TotalStats from "./TotalStats/TotalStats";
 import ActiveUsersChartConfig from "../../config/ActiveUsersChart.config";
 //styles
 import hs from '../Home/Home.module.sass';
+import s from './Statistics.module.sass';
 //images
 import statsImg1 from 'img/stats-img-1.png';
 import statsImg2 from 'img/stats-img-2.png';
+import Circle from "./Circle/Circle";
 
 
 function Statistics(props) {
@@ -76,7 +78,17 @@ function Statistics(props) {
                 </Box>
             </div>
 
+            <Box>
+                <BoxHeader customClass={`${hs.paddingHeader} ${hs.noBorderHeader}`}>
+                    <h2>Total sales</h2>
+                </BoxHeader>
 
+                <div className={s.circlesWrap}>
+                    <Circle />
+                    <Circle />
+                    <Circle />
+                </div>
+            </Box>
         </div>
 
 
