@@ -17,11 +17,12 @@ function Select(props) {
         control: (provided) => ({
             ...provided,
             padding: '15px 15px 15px 70px',
-            borderRadius: 25,
+            borderRadius: 30,
             outline: 'none',
             border: '1px solid #dadee7!important',
             boxShadow: 'none!important',
-            cursor: 'pointer'
+            cursor: 'pointer',
+            background: 'transparent'
         }),
         valueContainer: (provided) => ({
             ...provided,

@@ -7,12 +7,13 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import MessagesBox from "./MessagesBox/MessagesBox";
 import TasksBox from "./TasksBox/TasksBox";
+import ActivityBox from "./ActivityBox/ActivityBox";
 //config
 import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
 //styles
 import s from './Home.module.sass';
-import ActivityBox from "./ActivityBox/ActivityBox";
+
 
 function Home(props) {
 
@@ -37,9 +38,9 @@ function Home(props) {
     let ReportsData = {
         'Last Year': [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220],
         'Last 6 month': [3400, 3320, 1400, 2700, 3700, 1620, 2670, 1433, 2200, 3310, 3150, 2220],
-        'Last Month': [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220],
+        'Last Month': [100, 150, 225, 450, 500, 711, 670, 433, 301, 290, 150, 220],
         'Last Week': [123, 444, 45, 355, 700, 520, 1670, 433, 500, 610, 350, 220],
-        'Yesterday': [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220],
+        'Yesterday': [111, 222, 1304, 700, 5000, 620, 3740, 2800, 3000, 1500, 1000, 2000],
     };
 
     let SalesDataSelect = [];
@@ -87,7 +88,7 @@ function Home(props) {
     const name = JSON.parse(localStorage.getItem('username'));
 
     return (
-        <div className={s.home}>
+        <div>
             <h1>Hello {name}!</h1>
             <div className={s.homeTop}>
                 <Box customClass={s.boxPadding}>
