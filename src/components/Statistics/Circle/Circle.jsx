@@ -1,5 +1,7 @@
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import ProgressProvider from "./ProgressProvider";
+
 //styles
 import s from './Circle.module.sass'
 import 'react-circular-progressbar/dist/styles.css';
@@ -16,6 +18,7 @@ function Circle(props) {
             transform: 'rotate(0.5turn)',
             transformOrigin: 'center center',
             stroke: `red`,
+            transition: 'stroke-dashoffset 1s ease 0s',
         },
         trail: {
             stroke: '#dadee7',
@@ -31,12 +34,14 @@ function Circle(props) {
 
     return (
         <div className={s.circle}>
-            <CircularProgressbar
-                value={percentage}
-                text={`${percentage}%`}
+            <ProgressProvider valueStart='0' valueEnd={percentage}>
+                { value => <CircularProgressbar
+                value={value}
+                text={`${value}%`}
                 styles={styles}
                 strokeWidth='11'
-            />
+            /> }
+            </ProgressProvider>
             <div className={s.content}>
                 <div className={s.value}>2,300$</div>
                 <div className={s.title}>Direct Sales</div>
