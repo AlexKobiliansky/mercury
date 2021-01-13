@@ -1,0 +1,30 @@
+@import 'vars'
+
+.status
+  font-size: 14px
+  line-height: 1
+  &>div
+    display: flex
+    align-items: center
+    &>span
+      &:first-child
+        font-size: 0
+  svg
+    width: 17px
+    height: auto
+    margin-right: 7px
+
+.done
+  color: $acc-green
+  svg
+    fill: $acc-green
+
+.current
+  color: #8492af
+  svg
+    fill: #8492af
+
+.delayed
+  color: $acc-red
+  svg
+    fill: $acc-red

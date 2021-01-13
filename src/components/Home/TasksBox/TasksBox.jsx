@@ -5,16 +5,15 @@ import Task from "../../Workflow/Task/Task";
 import Box from "../../ui/atoms/Box/Box";
 //styles
 import hs from "../Home.module.sass";
-import Message from "../Message/Message";
 
 let tasks = [
     {
         id: 1,
         title: 'New website for JCD.pl',
         description: 'description asdasdasd lorem100',
-        doneStatus: 0,
+        doneStatus: 1,
         progressStatus: 0,
-        deadline: '2022-01-26'
+        deadline: '2022-01-26T13:51:50'
     },
     {
         id: 2,
@@ -22,7 +21,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 0,
-        deadline:  '2021-01-25'
+        deadline:  '2021-01-25T13:51:50'
     },
     {
         id: 3,
@@ -30,7 +29,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 0,
-        deadline:  '2021-01-07'
+        deadline:  '2021-01-07T13:51:50'
     },
     {
         id: 4,
@@ -38,7 +37,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 1,
-        deadline:  '2020-01-26'
+        deadline:  '2020-01-26T13:51:50'
     },
     {
         id: 5,
@@ -46,7 +45,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 1,
-        deadline:  '2021-03-22'
+        deadline:  '2021-03-22T13:51:50'
     },
     {
         id: 6,
@@ -54,7 +53,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 1,
-        deadline:  '2021-03-17'
+        deadline:  '2021-03-17T13:51:50'
     },
     {
         id: 7,
@@ -62,7 +61,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 1,
         progressStatus: 0,
-        deadline:  '2020-11-03'
+        deadline:  '2020-11-03T13:51:50'
     },
     {
         id: 8,
@@ -70,7 +69,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 1,
         progressStatus: 0,
-        deadline:  '2021-07-01'
+        deadline:  '2021-07-01T13:51:50'
     },
     {
         id: 9,
@@ -78,7 +77,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 1,
         progressStatus: 1,
-        deadline:  '2021-08-26'
+        deadline:  '2021-08-26T13:51:50'
     },
     {
         id: 10,
@@ -86,7 +85,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 1,
         progressStatus: 0,
-        deadline:  '2021-01-12'
+        deadline:  '2021-01-12T13:51:50'
     },
     {
         id: 11,
@@ -94,7 +93,7 @@ let tasks = [
         description: 'description asdasdasd lorem100',
         doneStatus: 0,
         progressStatus: 0,
-        deadline: '2021-01-07'
+        deadline: '2021-01-07T13:51:50'
     }
 ];
 

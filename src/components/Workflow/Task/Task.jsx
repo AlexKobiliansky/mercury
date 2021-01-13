@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //styles
 import s from './Task.module.sass'
+import Status from "./Status/Status";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +45,10 @@ function Task(props) {
                     <div className={s.title}>{props.title}</div>
                 </TruncateMarkup>
 
-                <div className={s.status}>5 days left</div>
+                <Status
+                    doneStatus={props.doneStatus}
+                    progressStatus={props.progressStatus}
+                    deadline={props.deadline} />
             </div>
             <IconButton
                 onClick={handleClick}
