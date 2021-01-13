@@ -1,7 +1,7 @@
 import React from 'react';
 
 //functions
-import numberWithCommas from '../../../functions/numberWithCommas'
+import {numberWithCommas} from 'utils'
 //styles
 import s from './TotalStats.module.sass'
 
