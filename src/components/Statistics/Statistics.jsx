@@ -2,13 +2,18 @@ import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
-import ActiveUsersChartConfig from "../../config/ActiveUsersChart.config";
-
-//styles
-import hs from '../Home/Home.module.sass'
 import Box from "../ui/atoms/Box/Box";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import TotalStats from "./TotalStats/TotalStats";
+//config
+import ActiveUsersChartConfig from "../../config/ActiveUsersChart.config";
+//styles
+import hs from '../Home/Home.module.sass';
+//images
+import statsImg1 from 'img/stats-img-1.png';
+import statsImg2 from 'img/stats-img-2.png';
+
 
 function Statistics(props) {
 
@@ -19,6 +24,9 @@ function Statistics(props) {
         'Last Week': [123, 444, 45, 355, 700, 520, 1670, 433, 500, 610, 350, 220],
         'Yesterday': [111, 222, 1304, 700, 5000, 620, 3740, 2800, 3000, 1500, 1000, 2000],
     };
+
+    let sales = 1560;
+    let views = 3230;
 
     let activeUsersDataSelect = [];
     for (let item in activeUsersData) {
@@ -34,7 +42,6 @@ function Statistics(props) {
         });
     }
 
-
     return (
         <div>
             <BoxHeader customClass={hs.marginHeader}>
@@ -46,7 +53,16 @@ function Statistics(props) {
             </BoxHeader>
 
             <div className={hs.homeTop}>
-                <Box>Some statistics will be there</Box>
+                <Box>
+                    <TotalStats
+                        value={sales}
+                        title='Sales'
+                        img={statsImg1}/>
+                    <TotalStats
+                        value={views}
+                        title='Views'
+                        img={statsImg2}/>
+                </Box>
 
                 <Box customClass={hs.boxPadding}>
                     <BoxHeader>
