@@ -1,14 +1,18 @@
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import ProgressProvider from "./ProgressProvider";
+import {numberWithCommas} from "../../../utils";
 
 //styles
 import s from './Circle.module.sass'
 import 'react-circular-progressbar/dist/styles.css';
 
+
 function Circle(props) {
 
-    const percentage = 66;
+    let data = props.data;
+
+    let percentage = data.percentage;
 
     let styles = {
         root: {
@@ -17,7 +21,7 @@ function Circle(props) {
         path: {
             transform: 'rotate(0.5turn)',
             transformOrigin: 'center center',
-            stroke: `red`,
+            stroke: props.color,
             transition: 'stroke-dashoffset 1s ease 0s',
         },
         trail: {
@@ -26,10 +30,10 @@ function Circle(props) {
             transformOrigin: 'center center',
         },
         text: {
-            fill: 'red',
+            fill: props.color,
             fontSize: '24px',
+            fontWeight: '500'
         },
-
     }
 
     return (
@@ -43,8 +47,8 @@ function Circle(props) {
             /> }
             </ProgressProvider>
             <div className={s.content}>
-                <div className={s.value}>2,300$</div>
-                <div className={s.title}>Direct Sales</div>
+                <div className={s.value}>{numberWithCommas(data.value)}</div>
+                <div className={s.title}>{data.title}</div>
             </div>
         </div>
     );
