@@ -98,11 +98,17 @@ let tasks = [
 
 function Workflow(props) {
 
+    let completedTasks = tasks.filter(item => item.doneStatus);
+
+    let toDoTasks = tasks.filter(item => !item.progressStatus && !item.doneStatus);
+
+    let inProgressTasks = tasks.filter(item => item.progressStatus && !item.doneStatus);
+
     return (
         <div className={s.workflow}>
-            <TasksList />
-            <TasksList />
-            <TasksList />
+            <TasksList title='To Do' tasks={toDoTasks} />
+            <TasksList title='In Progress' tasks={inProgressTasks} />
+            <TasksList title='Completed' tasks={completedTasks} />
         </div>
     );
 }

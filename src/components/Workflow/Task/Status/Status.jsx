@@ -13,7 +13,7 @@ import doneSvg from 'img/icons/done-icon.svg';
 import TimeAgo from 'javascript-time-ago';
 
 TimeAgo.addLocale({
-    locale: 'en',
+    locale: 'ff',
     now: {
         now: {
             current: "now",
@@ -113,12 +113,12 @@ function Status(props) {
        if(date > today) {
            status = <div className={s.current}>
                <ReactSVG src={clockSvg} wrapper='span'/>
-               <span><ReactTimeAgo date={date} locale="en"/></span>
+               <span><ReactTimeAgo date={date} locale="ff"/></span>
            </div>
        } else {
            status = <div className={s.delayed}>
                <ReactSVG src={clockSvg} wrapper='span'/>
-               <span><ReactTimeAgo date={date} locale="en"/></span>
+               <span><ReactTimeAgo date={date} locale="ff"/></span>
            </div>
        }
     }
