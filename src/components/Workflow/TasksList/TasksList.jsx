@@ -1,10 +1,9 @@
 import React from 'react';
 import Task from "../Task/Task";
-import { Droppable } from 'react-beautiful-dnd';
+import {Draggable, Droppable} from 'react-beautiful-dnd';
 
 //styles
 import s from './TasksList.module.sass'
-
 
 function TasksList(props) {
 
@@ -19,21 +18,32 @@ function TasksList(props) {
                 {provided => (
                     <div ref={provided.innerRef}
                          {...provided.droppableProps}>
-                            {
-                                props.tasks && props.tasks.map((task, index) => {
-                                    return <Task
-                                        key={task.id}
-                                        id={`${task.id}`}
-                                        title={task.title}
-                                        description={task.description}
-                                        doneStatus={task.doneStatus}
-                                        progressStatus={task.progressStatus}
-                                        deadline={task.deadline}
-                                        index={index}
-                                    />
-                                })
-                            }
-                            {provided.placeholder}
+                        {
+                            props.tasks && props.tasks.map((task, index) => {
+                                return <Draggable draggableId={`${task.id}`} index={index} key={task.id}>
+                                    {(provided) => (
+                                        <div {...provided.draggableProps}
+                                             {...provided.dragHandleProps}
+                                             ref={provided.innerRef}>
+
+                                            <Task
+                                                key={task.id}
+                                                id={`${task.id}`}
+                                                title={task.title}
+                                                description={task.description}
+                                                doneStatus={task.doneStatus}
+                                                progressStatus={task.progressStatus}
+                                                deadline={task.deadline}
+                                                index={index}
+                                            />
+
+                                        </div>
+                                    )}
+                                </Draggable>
+
+                            })
+                        }
+                        {provided.placeholder}
                     </div>
                 )}
 

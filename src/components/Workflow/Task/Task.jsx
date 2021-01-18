@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
 import Status from "./Status/Status";
-import {Draggable} from 'react-beautiful-dnd';
 
 //Material UI
 import IconButton from '@material-ui/core/IconButton';
@@ -39,13 +38,9 @@ function Task(props) {
     let letter = props.title.charAt(0);
 
     return (
-        <Draggable draggableId={props.id} index={props.index}>
-            {(provided) => (
+
                 <div
-                    className={classnames(s.task, {[props.customClass]: props.customClass})}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}>
+                    className={classnames(s.task, {[props.customClass]: props.customClass})} >
 
                     <Label title={letter}/>
                     <div className={s.content}>
@@ -76,13 +71,8 @@ function Task(props) {
                         <MenuItem onClick={handleClose}>Setting 4</MenuItem>
                     </Menu>
                 </div>
+            )
 
-
-            )}
-
-        </Draggable>
-
-    );
 }
 
 export default Task;
