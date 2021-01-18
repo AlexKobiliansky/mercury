@@ -2,6 +2,8 @@ import React from 'react';
 import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
+import Status from "./Status/Status";
+import {Draggable} from 'react-beautiful-dnd';
 
 //Material UI
 import IconButton from '@material-ui/core/IconButton';
@@ -12,7 +14,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //styles
 import s from './Task.module.sass'
-import Status from "./Status/Status";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,37 +39,49 @@ function Task(props) {
     let letter = props.title.charAt(0);
 
     return (
-        <div className={classnames(s.task, {[props.customClass] : props.customClass})}>
-            <Label title={letter}/>
-            <div className={s.content}>
-                <TruncateMarkup lines={1} ellipsis={' (...)'}>
-                    <div className={s.title}>{props.title}</div>
-                </TruncateMarkup>
+        <Draggable draggableId={props.id} index={props.index}>
+            {(provided) => (
+                <div
+                    className={classnames(s.task, {[props.customClass]: props.customClass})}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}>
 
-                <Status
-                    doneStatus={props.doneStatus}
-                    progressStatus={props.progressStatus}
-                    deadline={props.deadline} />
-            </div>
-            <IconButton
-                onClick={handleClick}
-                classes={{root: classes.root}}
-            >
-                <MoreVertIcon />
-            </IconButton>
-            <Menu
-                anchorEl={anchorEl}
-                disableScrollLock={true}
-                open={open}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose}>Setting 1</MenuItem>
-                <MenuItem onClick={handleClose}>Setting 2</MenuItem>
-                <MenuItem onClick={handleClose}>Setting 3</MenuItem>
-                <MenuItem onClick={handleClose}>Setting 4</MenuItem>
-            </Menu>
+                    <Label title={letter}/>
+                    <div className={s.content}>
+                        <TruncateMarkup lines={1} ellipsis={' (...)'}>
+                            <div className={s.title}>{props.title}</div>
+                        </TruncateMarkup>
 
-        </div>
+                        <Status
+                            doneStatus={props.doneStatus}
+                            progressStatus={props.progressStatus}
+                            deadline={props.deadline}/>
+                    </div>
+                    <IconButton
+                        onClick={handleClick}
+                        classes={{root: classes.root}}
+                    >
+                        <MoreVertIcon/>
+                    </IconButton>
+                    <Menu
+                        anchorEl={anchorEl}
+                        disableScrollLock={true}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Setting 1</MenuItem>
+                        <MenuItem onClick={handleClose}>Setting 2</MenuItem>
+                        <MenuItem onClick={handleClose}>Setting 3</MenuItem>
+                        <MenuItem onClick={handleClose}>Setting 4</MenuItem>
+                    </Menu>
+                </div>
+
+
+            )}
+
+        </Draggable>
+
     );
 }
 

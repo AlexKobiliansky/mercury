@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import TasksList from "./TasksList/TasksList";
+import { DragDropContext } from "react-beautiful-dnd";
 
 //styles
 import s from './Workflow.module.sass'
-import TasksList from "./TasksList/TasksList";
+
 
 let tasks = [
     {
@@ -98,17 +100,49 @@ let tasks = [
 
 function Workflow(props) {
 
+    let [toDoTasks, setToDoTasks] = useState(tasks.filter(item => !item.progressStatus && !item.doneStatus));
+
     let completedTasks = tasks.filter(item => item.doneStatus);
 
-    let toDoTasks = tasks.filter(item => !item.progressStatus && !item.doneStatus);
+    // let toDoTasks = ;
 
     let inProgressTasks = tasks.filter(item => item.progressStatus && !item.doneStatus);
 
+    let onDragEnd = result => {
+        const {destination, source, draggableId} = result;
+
+        console.log(toDoTasks);
+        console.log(result);
+
+        if (!destination) {
+            return;
+        }
+
+        if(
+            destination.droppableId === source.droppableId &&
+            destination.index === source.index
+        ) {
+            return;
+        }
+
+        let dragableItem = toDoTasks.find(item => item.id === Number(draggableId));
+        let newTasksList = toDoTasks.filter(item => item.id !== Number(draggableId));
+
+        newTasksList.splice(destination.index, 0, dragableItem);
+
+        setToDoTasks(newTasksList)
+
+        // console.log(newTasksList);
+    }
+
     return (
         <div className={s.workflow}>
-            <TasksList title='To Do' tasks={toDoTasks} />
-            <TasksList title='In Progress' tasks={inProgressTasks} />
-            <TasksList title='Completed' tasks={completedTasks} />
+            <DragDropContext onDragEnd={onDragEnd}>
+                <TasksList title='To Do' tasks={toDoTasks} listId="1"/>
+                <TasksList title='In Progress' tasks={inProgressTasks} listId="2"/>
+                <TasksList title='Completed' tasks={completedTasks} listId="3"/>
+            </DragDropContext>
+
         </div>
     );
 }
