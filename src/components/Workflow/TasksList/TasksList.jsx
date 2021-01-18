@@ -24,7 +24,8 @@ function TasksList(props) {
                                     {(provided) => (
                                         <div {...provided.draggableProps}
                                              {...provided.dragHandleProps}
-                                             ref={provided.innerRef}>
+                                             ref={provided.innerRef}
+                                        className={s.taskWrap}>
 
                                             <Task
                                                 key={task.id}
