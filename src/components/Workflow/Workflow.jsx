@@ -1,17 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import TasksList from "./TasksList/TasksList";
-import { DragDropContext } from "react-beautiful-dnd";
+import TasksList from './TasksList/TasksList';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 //styles
 import s from './Workflow.module.sass'
 
 
-
-
 function Workflow(props) {
-
-    console.log('rerendered');
 
     let state = [
         {
@@ -83,7 +79,7 @@ function Workflow(props) {
             title: 'New website for Symu.co',
             description: 'description asdasdasd lorem100',
             doneStatus: 1,
-            progressStatus: 1,
+            progressStatus: 0,
             deadline:  '2021-08-26T13:51:50'
         },
         {
@@ -106,13 +102,39 @@ function Workflow(props) {
 
     let [tasks, setTasks] = useState(state);
 
-    // let toDoTasks = tasks.filter(item => !item.progressStatus && !item.doneStatus);
-    // let inProgressTasks = tasks.filter(item => item.progressStatus && !item.doneStatus);
-    // let completedTasks = tasks.filter(item => item.doneStatus)
-
     let [toDoTasks, setToDoTasks] = useState(tasks.filter(item => !item.progressStatus && !item.doneStatus));
     let [inProgressTasks, setInProgressTasks] = useState(tasks.filter(item => item.progressStatus && !item.doneStatus));
     let [completedTasks, setCompletedTasks] = useState(tasks.filter(item => item.doneStatus));
+
+
+    let splitToLists = () => {
+        setToDoTasks(tasks.filter(item => !item.progressStatus && !item.doneStatus));
+        setInProgressTasks(tasks.filter(item => item.progressStatus && !item.doneStatus));
+        setCompletedTasks(tasks.filter(item => item.doneStatus));
+        setTasks([...tasks]);
+    }
+
+
+    let setTaskToDo = (id) => {
+        let task = tasks.find(item => item.id === Number(id));
+        task.doneStatus = 0;
+        task.progressStatus = 0;
+        splitToLists();
+    }
+
+    let setTaskInProgress = (id) => {
+        let task = tasks.find(item => item.id === Number(id));
+        task.doneStatus = 0;
+        task.progressStatus = 1;
+        splitToLists();
+    }
+
+    let setTaskComplete = (id) => {
+        let task = tasks.find(item => item.id === Number(id));
+        task.doneStatus = 1;
+        task.progressStatus = 0;
+        splitToLists();
+    }
 
     let onDragEnd = result => {
         const {destination, source, draggableId} = result;
@@ -138,6 +160,7 @@ function Workflow(props) {
                 break;
             case "3": startList = completedTasks;
                 break;
+            default: return;
         }
 
         let dragableItem = startList.find(item => item.id === Number(draggableId));
@@ -149,48 +172,59 @@ function Workflow(props) {
 
             startList.splice(source.index, 1)
             switch (destination.droppableId) {
-                case "1": {
+                case "1":
                     finishList = toDoTasks;
                     dragableItem.doneStatus = 0;
-                    dragableItem.progressStatus = 1;
+                    dragableItem.progressStatus = 0;
                     finishList.splice(destination.index, 0, dragableItem);
                     setToDoTasks(finishList)
-                }
-                break;
-                case "2": {
+                    break;
+                case "2":
                     finishList = inProgressTasks;
                     dragableItem.doneStatus = 0;
                     dragableItem.progressStatus = 1;
                     finishList.splice(destination.index, 0, dragableItem);
                     setInProgressTasks(finishList);
-                }
-                break;
-                case "3": {
+                    break;
+                case "3":
                     finishList = completedTasks;
                     dragableItem.doneStatus = 1;
+                    dragableItem.progressStatus = 0;
                     finishList.splice(destination.index, 0, dragableItem);
                     setCompletedTasks(finishList);
-                }
+                    break;
+                default: return;
             }
-
             setTasks([...tasks]);
-
         }
     }
 
-
     return (
-
         <div className={s.workflow}>
             <DragDropContext onDragEnd={onDragEnd}>
-                <TasksList title='To Do' tasks={toDoTasks} listId="1"/>
-                <TasksList title='In Progress' tasks={inProgressTasks} listId="2"/>
-                <TasksList title='Completed' tasks={completedTasks} listId="3"/>
+                <TasksList
+                    title='To Do'
+                    tasks={toDoTasks}
+                    listId="1"
+                    setTaskComplete={setTaskComplete}
+                    setTaskToDo={setTaskToDo}
+                    setTaskInProgress={setTaskInProgress}/>
+                <TasksList
+                    title='In Progress'
+                    tasks={inProgressTasks}
+                    listId="2"
+                    setTaskComplete={setTaskComplete}
+                    setTaskToDo={setTaskToDo}
+                    setTaskInProgress={setTaskInProgress}/>
+                <TasksList
+                    title='Completed'
+                    tasks={completedTasks}
+                    listId="3"
+                    setTaskComplete={setTaskComplete}
+                    setTaskToDo={setTaskToDo}
+                    setTaskInProgress={setTaskInProgress}/>
             </DragDropContext>
-
         </div>
-
-
     );
 }
 

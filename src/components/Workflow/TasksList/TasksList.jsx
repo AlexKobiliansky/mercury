@@ -36,20 +36,20 @@ function TasksList(props) {
                                                 progressStatus={task.progressStatus}
                                                 deadline={task.deadline}
                                                 index={index}
+                                                setTaskComplete={props.setTaskComplete}
+                                                setTaskToDo={props.setTaskToDo}
+                                                setTaskInProgress={props.setTaskInProgress}
                                             />
 
                                         </div>
                                     )}
                                 </Draggable>
-
                             })
                         }
                         {provided.placeholder}
                     </div>
                 )}
-
             </Droppable>
-
         </div>
     );
 }

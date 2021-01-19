@@ -37,8 +37,26 @@ function Task(props) {
 
     let letter = props.title.charAt(0);
 
-    return (
+    let setToDo = () => {
+        props.setTaskToDo(props.id);
+    }
 
+    let setInProgress = () => {
+        props.setTaskInProgress(props.id);
+    }
+
+    let setComplete = () => {
+        props.setTaskComplete(props.id);
+    }
+
+    let deleteTask = () => {
+        if (window.confirm( 'Delete task "' + props.title +'" Are you sure?' )) {
+            alert('delete')
+        }
+        handleClose();
+    }
+
+    return (
                 <div
                     className={classnames(s.task, {[props.customClass]: props.customClass})} >
 
@@ -65,10 +83,10 @@ function Task(props) {
                         open={open}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Setting 1</MenuItem>
-                        <MenuItem onClick={handleClose}>Setting 2</MenuItem>
-                        <MenuItem onClick={handleClose}>Setting 3</MenuItem>
-                        <MenuItem onClick={handleClose}>Setting 4</MenuItem>
+                        { !props.doneStatus && <MenuItem onClick={setComplete}>Set task as "Complete"</MenuItem> }
+                        { !props.progressStatus && <MenuItem onClick={setInProgress}>Set task as "In progress"</MenuItem> }
+                        { (props.doneStatus || props.progressStatus) ? <MenuItem onClick={setToDo}> Set task as "To Do"</MenuItem> : '' }
+                        <MenuItem onClick={deleteTask}>Delete</MenuItem>
                     </Menu>
                 </div>
             )
