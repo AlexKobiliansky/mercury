@@ -4,7 +4,7 @@ import s from './NavItem.module.sass'
 
 function NavItem(props) {
     return (
-        <li><NavLink to={props.path} exact activeClassName={s.active}>
+        <li className={s.navItem}><NavLink to={props.path} exact activeClassName={s.active}>
             <div className={s.imgWrap}>
                 <img src={props.icon} alt={props.name}/>
             </div>

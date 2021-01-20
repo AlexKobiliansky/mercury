@@ -5,9 +5,9 @@ import s from './Select.module.sass'
 
 function Select(props) {
 
-    const options = props.data.map((item, index) => {
+    const options = props.data ? props.data.map((item, index) => {
         return {value: item, label: item}
-    })
+    }) : '';
 
     let changeOption = (e) => {
         props.changeOption(e.value)
@@ -57,12 +57,13 @@ function Select(props) {
     return (
         <label className={s.selectLabel}>
             <span>Period:</span>
+            { options &&
             <ReactSelect
                 options={options}
                 onChange={changeOption}
                 styles={customStyles}
                 defaultValue={options[0]}
-            />
+            /> }
         </label>
 
     );
