@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import Select from "../ui/atoms/Select/Select";
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
@@ -15,11 +15,12 @@ import ava5 from "img/message-ava-5.jpg";
 import ava6 from "img/message-ava-6.jpg";
 import ava7 from "img/message-ava-7.jpg";
 import avatar from "img/avatar.png";
-import Table from "../ui/atoms/Table/Table";
+import Table from "./Table/Table";
+
 
 
 function Users() {
-    let users = [
+    let data = [
         {
             id: 1,
             name: 'John Doe',
@@ -172,9 +173,7 @@ function Users() {
         },
     ];
 
-    let exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
-
-
+    let [users, setUsers] = useState(data);
 
     return (
         <div>
@@ -186,8 +185,8 @@ function Users() {
                 />
             </BoxHeader>
 
+            <Table data={users}/>
 
-            <Table data={exampleItems}/>
         </div>
     );
 }
