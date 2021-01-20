@@ -4,6 +4,7 @@ import Pagination from "../../ui/atoms/Pagination/Pagination";
 //styles
 import s from './Table.module.sass';
 import UserInfo from "../UserInfo/UserInfo";
+import UserActivity from "../UserActivity/UserActivity";
 
 function Table(props) {
     let [pageOfItems, setPageOfItems] = useState([]);
@@ -32,11 +33,12 @@ function Table(props) {
                                 img={item.avatar}
                                 post={item.post}
                                 online={item.online} />
-
                         </td>
-                        <td>{item.lastVisit}</td>
-                        <td>{item.email}</td>
-                        <td>{item.phone}</td>
+                        <td>
+                            <UserActivity online={item.online} lastVisit={item.lastVisit}/>
+                        </td>
+                        <td><a href={`mailto:${item.email}`}>{item.email}</a></td>
+                        <td><a href={"mailto:" + item.phone.replace(/[^\d]/g, '')}>{item.phone}</a></td>
                         <td></td>
                     </tr>
                 )}

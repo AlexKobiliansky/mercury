@@ -3,7 +3,7 @@ import { ReactSVG } from 'react-svg';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
 import classnames from 'classnames';
-import ReactTimeAgo from 'react-time-ago'
+import ReactTimeAgo from 'react-time-ago';
 
 //Material UI
 import Menu from '@material-ui/core/Menu';
