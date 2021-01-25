@@ -4,7 +4,6 @@ import Select from "../ui/atoms/Select/Select";
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 
 //styles
-// import s from './Users.module';
 import hs from "../Home/Home.module.sass";
 //images
 import ava1 from "img/message-ava-1.jpg";
@@ -94,7 +93,7 @@ function Users() {
         {
             id: 8,
             name: 'Alex Kobilianskiy',
-            post: 'Super front-end team-lead',
+            post: 'Team-lead',
             avatar: avatar,
             email: 'alex.kobilianskiy@gmail.com',
             phone: '(063) 622 20 **',
@@ -175,6 +174,22 @@ function Users() {
 
     let [users, setUsers] = useState(data);
 
+    let selectData = ['Active first', 'Active last'];
+
+    let sortUsers = (value) => {
+        switch (value) {
+            case 'Active first':
+                users.sort((a, b) => a.online > b.online ? -1 : 1);
+                break;
+            case 'Active last':
+                users.sort((a, b) => a.online > b.online ? 1 : -1);
+                break;
+            default:
+                return;
+        }
+        setUsers([...users]);
+    }
+
     let deleteUser = (id) => {
         let user = users.find(user => user.id === id);
         if (window.confirm( 'Delete user "' + user.name +'" Are you sure?' )) {
@@ -187,8 +202,8 @@ function Users() {
             <BoxHeader customClass={hs.marginHeader}>
                 <h1>Users</h1>
                 <Select
-                    // data={activeUsersDataSelect}
-                    // changeOption={changeActiveUsersSelect}
+                    data={selectData}
+                    changeOption={sortUsers}
                 />
             </BoxHeader>
 
