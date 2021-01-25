@@ -1,0 +1,42 @@
+@import 'mixins'
+@import 'vars'
+
+.pagination
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 50px
+  li
+    width: 40px
+    height: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-right: 1px
+    background-color: #fff
+    font-size: 19px
+    font-weight: 500
+    box-shadow: 0 0 2px 1px rgba(#000, .05)
+    cursor: pointer
+    +mt(.3s)
+    &.active, &:hover
+      color: $acc-blue
+  .nav
+    background-color: transparent
+    box-shadow: none
+
+.nav
+  background-image: url('/img/icons/pag-arrow.svg')
+  background-size: auto 22px
+  background-repeat: no-repeat
+  background-position: center center
+
+.navExtreme
+  background-image: url('/img/icons/pag-arrow-last.svg')
+
+.navFirst
+  transform: rotate(180deg)
+
+.disabled
+  display: none!important
+

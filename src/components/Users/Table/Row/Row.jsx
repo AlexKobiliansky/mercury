@@ -12,7 +12,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     menuItem: {
-        boxShadow: '0px 4px 5px 1px rgba(0,0,0,0.08)',
+        boxShadow: '0px 0 5px 1px rgba(0,0,0,0.14)',
     },
     icon: {
         fontSize: '30px'

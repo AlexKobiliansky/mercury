@@ -5,9 +5,6 @@ import Row from "./Row/Row";
 //styles
 import s from './Table.module.sass';
 
-
-
-
 function Table(props) {
 
     let [pageOfItems, setPageOfItems] = useState([]);
