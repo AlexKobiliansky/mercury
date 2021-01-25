@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import Pagination from "../../ui/atoms/Pagination/Pagination";
+import Row from "./Row/Row";
 
 //styles
 import s from './Table.module.sass';
-import UserInfo from "../UserInfo/UserInfo";
-import UserActivity from "../UserActivity/UserActivity";
+
+
+
 
 function Table(props) {
+
     let [pageOfItems, setPageOfItems] = useState([]);
 
     let onChangePage = (pageOfItems) => {
@@ -22,25 +25,15 @@ function Table(props) {
                     <th>Last activity</th>
                     <th>Mail</th>
                     <th>Phone</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 {pageOfItems.map(item =>
-                    <tr key={item.id}>
-                        <td>
-                            <UserInfo
-                                name={item.name}
-                                img={item.avatar}
-                                post={item.post}
-                                online={item.online} />
-                        </td>
-                        <td>
-                            <UserActivity online={item.online} lastVisit={item.lastVisit}/>
-                        </td>
-                        <td><a href={`mailto:${item.email}`}>{item.email}</a></td>
-                        <td><a href={"mailto:" + item.phone.replace(/[^\d]/g, '')}>{item.phone}</a></td>
-                        <td></td>
-                    </tr>
+                    <Row
+                        item={item}
+                        key={item.id}
+                        deleteUser={props.deleteUser}/>
                 )}
                 </tbody>
             </table>

@@ -15,7 +15,7 @@ function UserInfo(props) {
             </div>
 
             <div className={s.content}>
-                <div className={s.name}>{props.name}</div>
+                <div>{props.name}</div>
                 <div className={s.post}>{props.post}</div>
             </div>
         </div>

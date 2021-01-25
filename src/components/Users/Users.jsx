@@ -175,6 +175,13 @@ function Users() {
 
     let [users, setUsers] = useState(data);
 
+    let deleteUser = (id) => {
+        let user = users.find(user => user.id === id);
+        if (window.confirm( 'Delete user "' + user.name +'" Are you sure?' )) {
+            setUsers(users.filter(user => user.id !== id))
+        }
+    }
+
     return (
         <div>
             <BoxHeader customClass={hs.marginHeader}>
@@ -185,7 +192,7 @@ function Users() {
                 />
             </BoxHeader>
 
-            <Table data={users}/>
+            <Table data={users} deleteUser = {deleteUser}/>
 
         </div>
     );
