@@ -1,33 +1,9 @@
 import React from 'react';
 import ReactSelect from 'react-select';
-import store from '../../../../redux/store';
-import {connect} from 'react-redux';
-
 
 import s from './Select.module.sass'
 
-function Select(props) {
-
-    const options = props.data ? props.data.map((item, index) => {
-        return {value: item, label: item}
-    }) : '';
-
-    // let changeOption = (e) => {
-    //     props.changeOption(e.value)
-    // }
-
-    console.log(props);
-
-    let changeOptionRedux = (e) => {
-        store.dispatch({
-            type: 'SORT_STATUS',
-            payload: {
-                status: e.value
-            }
-        });
-
-        console.log(store.getState());
-    }
+function Select({data, changeOption}) {
 
     const customStyles = {
         control: (provided) => ({
@@ -70,27 +46,28 @@ function Select(props) {
         })
     }
 
+    const options = data ? data.list.map((item, index) => {
+        return {value: item, label: item}
+    }) : '';
+
+    // let changeSelect = (e) => {
+    //     changeOption(e.value)
+    // }
+
     return (
         <label className={s.selectLabel}>
-            <span>Period:</span>
+            <span>{data.label}:</span>
             { options &&
             <ReactSelect
                 options={options}
-                onChange={changeOptionRedux}
+                onChange={changeOption}
                 styles={customStyles}
                 defaultValue={options[0]}
             /> }
         </label>
-
     );
 }
 
-const mapState = (state, props) => {
-    console.log(state)
 
-    return {
-        statusProps: state.status
-    }
-}
 
-export default connect(mapState)(Select);
+export default (Select);

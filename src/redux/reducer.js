@@ -4,8 +4,6 @@ const rootReducer = (state={}, action) => {
             return {status: action.payload.status};
         default: return state;
     }
-
-
 }
 
 export default rootReducer;

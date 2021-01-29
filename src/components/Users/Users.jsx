@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import Select from "../ui/atoms/Select/Select";
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
+import {connect} from 'react-redux';
+import store from '../../redux/store';
 
 //styles
 import hs from "../Home/Home.module.sass";
@@ -17,9 +19,9 @@ import avatar from "img/avatar.png";
 import Table from "./Table/Table";
 
 
+function Users({status}) {
 
-function Users() {
-    let data = [
+    let [users, setUsers] = useState([
         {
             id: 1,
             name: 'John Doe',
@@ -170,29 +172,44 @@ function Users() {
             online: 1,
             lastVisit: '2021-01-20T06:51:50'
         },
-    ];
+    ]);
 
-    let [users, setUsers] = useState(data);
-
-    let selectData = ['Active first', 'Active last'];
-
-    let sortUsers = (value) => {
-        switch (value) {
+    useEffect(() => {
+        switch (status) {
             case 'Active first':
-                users.sort((a, b) => a.online > b.online ? -1 : 1);
+                users.sort((a, b) => b.online - a.online);
                 break;
             case 'Active last':
-                users.sort((a, b) => a.online > b.online ? 1 : -1);
+                users.sort((a, b) => a.lastVisit > b.lastVisit? 1 : -1);
+                users.sort((a, b) => a.online - b.online);
+                break;
+            case 'Default':
+                users.sort((a, b) => a.id - b.id);
                 break;
             default:
-                return;
+                users.sort((a, b) => a.id > b.id ? 1 : -1);
         }
-        setUsers([...users]);
+
+        setUsers([...users]); // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [status])
+
+    let selectData = {
+        list: ['Default', 'Active first', 'Active last'],
+        label: 'Sort'
+    };
+
+    let sortUsers = (e) => {
+        store.dispatch({
+            type: "SORT_STATUS",
+            payload: {
+                status: e.value
+            }
+        });
     }
 
     let deleteUser = (id) => {
         let user = users.find(user => user.id === id);
-        if (window.confirm( 'Delete user "' + user.name +'" Are you sure?' )) {
+        if (window.confirm('Delete user "' + user.name + '" Are you sure?')) {
             setUsers(users.filter(user => user.id !== id))
         }
     }
@@ -207,10 +224,15 @@ function Users() {
                 />
             </BoxHeader>
 
-            <Table data={users} deleteUser = {deleteUser}/>
-
+            <Table data={users} deleteUser={deleteUser}/>
         </div>
     );
 }
 
-export default withAuthRedirect(Users);
+const mapState = (state) => {
+    return {
+        status: state.status
+    }
+}
+
+export default withAuthRedirect(connect(mapState)(Users));

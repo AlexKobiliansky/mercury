@@ -12,7 +12,7 @@ TimeAgo.addDefaultLocale(en)
 
 ReactDOM.render(
     <Provider store={store}>
-        {/* <React.StrictMode>*/}
+         {/*<React.StrictMode>*/}
         <BrowserRouter>
             <App />
         </BrowserRouter>
