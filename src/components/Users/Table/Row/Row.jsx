@@ -52,7 +52,7 @@ function Row(props) {
                 <UserActivity online={props.item.online} lastVisit={props.item.lastVisit}/>
             </td>
             <td><a href={`mailto:${props.item.email}`}>{props.item.email}</a></td>
-            <td><a href={"mailto:" + props.item.phone.replace(/[^\d]/g, '')}>{props.item.phone}</a></td>
+            <td><a href={"tel:" + props.item.phone.replace(/[^\d]/g, '')}>{props.item.phone}</a></td>
             <td>
                 <IconButton onClick={handleClick} >
                     <MoreVertIcon classes={{root: classes.icon}}/>

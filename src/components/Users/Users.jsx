@@ -3,7 +3,8 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import Select from "../ui/atoms/Select/Select";
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import {connect} from 'react-redux';
-import store from '../../redux/store';
+import Table from "./Table/Table";
+import {sortUsers} from "../../redux/actions/users";
 
 //styles
 import hs from "../Home/Home.module.sass";
@@ -16,10 +17,10 @@ import ava5 from "img/message-ava-5.jpg";
 import ava6 from "img/message-ava-6.jpg";
 import ava7 from "img/message-ava-7.jpg";
 import avatar from "img/avatar.png";
-import Table from "./Table/Table";
 
 
-function Users({status}) {
+
+function Users({statusExample, sortUsers}) {
 
     let [users, setUsers] = useState([
         {
@@ -175,7 +176,7 @@ function Users({status}) {
     ]);
 
     useEffect(() => {
-        switch (status) {
+        switch (statusExample) {
             case 'Active first':
                 users.sort((a, b) => b.online - a.online);
                 break;
@@ -191,20 +192,15 @@ function Users({status}) {
         }
 
         setUsers([...users]); // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [status])
+    }, [statusExample])
 
     let selectData = {
         list: ['Default', 'Active first', 'Active last'],
         label: 'Sort'
     };
 
-    let sortUsers = (e) => {
-        store.dispatch({
-            type: "SORT_STATUS",
-            payload: {
-                status: e.value
-            }
-        });
+    let onSortUsers = (e) => {
+        sortUsers(e.value);
     }
 
     let deleteUser = (id) => {
@@ -220,7 +216,7 @@ function Users({status}) {
                 <h1>Users</h1>
                 <Select
                     data={selectData}
-                    changeOption={sortUsers}
+                    changeOption={onSortUsers}
                 />
             </BoxHeader>
 
@@ -229,10 +225,15 @@ function Users({status}) {
     );
 }
 
-const mapState = (state) => {
+
+const mapStateToProps = (state) => {
     return {
-        status: state.status
+        statusExample: state.users.status
     }
 }
 
-export default withAuthRedirect(connect(mapState)(Users));
+const mapDispatchToProps = {
+    sortUsers
+}
+
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Users));
