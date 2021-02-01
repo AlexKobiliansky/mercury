@@ -3,12 +3,12 @@ import ReactSelect from 'react-select';
 
 import s from './Select.module.sass'
 
-function Select({data, changeOption}) {
+function Select({data, changeOption, customPadding, selectedOption}) {
 
     const customStyles = {
         control: (provided) => ({
             ...provided,
-            padding: '15px 15px 15px 70px',
+            padding: customPadding ? customPadding.padding : '15px 15px 15px 70px',
             borderRadius: 30,
             outline: 'none',
             border: '1px solid #dadee7!important',
@@ -48,11 +48,13 @@ function Select({data, changeOption}) {
 
     const options = data ? data.list.map((item, index) => {
         return {value: item, label: item}
-    }) : '';
+    }) : ''; 
 
     // let changeSelect = (e) => {
     //     changeOption(e.value)
     // }
+
+    const defaultValue = selectedOption ? selectedOption : options[0];
 
     return (
         <label className={s.selectLabel}>
@@ -62,7 +64,7 @@ function Select({data, changeOption}) {
                 options={options}
                 onChange={changeOption}
                 styles={customStyles}
-                defaultValue={options[0]}
+                defaultValue={defaultValue}
             /> }
         </label>
     );

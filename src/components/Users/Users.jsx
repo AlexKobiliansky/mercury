@@ -180,6 +180,8 @@ function Users({sorting, sortUsers}) {
         },
     ]);
 
+    const num = users.length;
+
     useEffect(() => {
         switch (sorting) {
             case ACTIVE_FIRST:
@@ -230,11 +232,12 @@ function Users({sorting, sortUsers}) {
     return (
         <div>
             <BoxHeader customClass={hs.marginHeader}>
-                <h1>Users</h1>
+                <h1>Users {num>0 && <span>({num})</span>}</h1>
                 <Select
                     data={selectData}
                     changeOption={onSortUsers}
-                    sorting={sorting}
+                    customPadding={{padding: '15px 15px 15px 60px'}}
+                    selectedOption={sorting}
                 />
             </BoxHeader>
 

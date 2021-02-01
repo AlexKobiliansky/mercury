@@ -1,8 +1,8 @@
 import {SORT_USERS} from '../types';
 
-export const sortUsers = (status) => ({
+export const sortUsers = (sorting) => ({
     type: SORT_USERS,
     payload: {
-        status: status
+        sorting: sorting
     }
 });
