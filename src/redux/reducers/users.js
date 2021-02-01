@@ -1,13 +1,15 @@
+import {SORT_USERS} from '../types';
+
 const initialState = {
-    status: ''
+    sorting: ''
 }
 
 const users = (state=initialState, action) => {
     switch (action.type) {
-        case 'SORT_STATUS':
+        case SORT_USERS:
             return {
                 ...state,
-                status: action.payload.status
+                sorting: action.payload.sorting
             };
         default: return state;
     }
