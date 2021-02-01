@@ -30,14 +30,13 @@ function Table(props) {
                     <Row
                         item={item}
                         key={item.id}
-                        deleteUser={props.deleteUser}/>
+                    />
                 )}
                 </tbody>
             </table>
 
             <Pagination items={props.data} onChangePage={onChangePage} pageSize={7}/>
         </div>
-
     );
 }
 

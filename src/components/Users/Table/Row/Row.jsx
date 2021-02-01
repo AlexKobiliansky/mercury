@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import UserInfo from "../../UserInfo/UserInfo";
 import UserActivity from "../../UserActivity/UserActivity";
 
@@ -8,7 +8,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
-
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
+import {deleteUser} from '../../../../redux/actions/users';
+import {connect} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     menuItem: {
@@ -19,9 +21,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Row(props) {
+function Row({item, deleteUser}) {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
@@ -34,25 +36,33 @@ function Row(props) {
 
     let classes = useStyles();
 
-    let deleteUser = (id) => {
-        props.deleteUser(id);
-        handleClose();
+    let onDeleteUser = (id) => {
+        deleteUser(id);
+        handleDialog();
     }
 
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleDialog = () => {
+        setOpenDialog(!openDialog);
+        handleClose();
+    };
+
     return (
-        <tr >
+        <>
+        <tr>
             <td>
                 <UserInfo
-                    name={props.item.name}
-                    img={props.item.avatar}
-                    post={props.item.post}
-                    online={props.item.online} />
+                    name={item.name}
+                    img={item.avatar}
+                    post={item.post}
+                    online={item.online} />
             </td>
             <td>
-                <UserActivity online={props.item.online} lastVisit={props.item.lastVisit}/>
+                <UserActivity online={item.online} lastVisit={item.lastVisit}/>
             </td>
-            <td><a href={`mailto:${props.item.email}`}>{props.item.email}</a></td>
-            <td><a href={"tel:" + props.item.phone.replace(/[^\d]/g, '')}>{props.item.phone}</a></td>
+            <td><a href={`mailto:${item.email}`}>{item.email}</a></td>
+            <td><a href={"tel:+" + item.phone.replace(/[^\d]/g, '')}>{item.phone}</a></td>
             <td>
                 <IconButton onClick={handleClick} >
                     <MoreVertIcon classes={{root: classes.icon}}/>
@@ -64,11 +74,38 @@ function Row(props) {
                     onClose={handleClose}
                     classes={{paper: classes.menuItem}}
                 >
-                    <MenuItem onClick={()=>deleteUser(props.item.id)}>Delete User</MenuItem>
+                    <MenuItem onClick={handleDialog}>Delete User</MenuItem>
                 </Menu>
             </td>
         </tr>
+
+        <Dialog
+            open={openDialog}
+            onClose={handleDialog}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">Delete user {item.name} ?</DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    This will remove all information about current user
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleDialog} color="primary">
+                    Cancel
+                </Button>
+                <Button onClick={() => onDeleteUser(item.id)} color="primary" autoFocus>
+                    Delete this user
+                </Button>
+            </DialogActions>
+        </Dialog>
+        </>
     );
 }
 
-export default Row;
+const mapDispatchToProps = {
+    deleteUser
+}
+
+export default connect(null, mapDispatchToProps)(Row);

@@ -50,11 +50,12 @@ function Select({data, changeOption, customPadding, selectedOption}) {
         return {value: item, label: item}
     }) : '';
 
-    // let changeSelect = (e) => {
-    //     changeOption(e.value)
-    // }
+    let defaultValue = options[0];
 
-    const defaultValue = selectedOption ? selectedOption : options[0];
+    if (selectedOption) {
+        let key = Object.keys(data['list'])[Object.values(data['list']).indexOf(selectedOption)];
+        defaultValue = options[key];
+    }
 
     return (
         <label className={s.selectLabel}>
@@ -69,7 +70,5 @@ function Select({data, changeOption, customPadding, selectedOption}) {
         </label>
     );
 }
-
-
 
 export default (Select);
