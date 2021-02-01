@@ -48,7 +48,7 @@ function Select({data, changeOption, customPadding, selectedOption}) {
 
     const options = data ? data.list.map((item, index) => {
         return {value: item, label: item}
-    }) : ''; 
+    }) : '';
 
     // let changeSelect = (e) => {
     //     changeOption(e.value)
