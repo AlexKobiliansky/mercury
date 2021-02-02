@@ -10,7 +10,7 @@ function TasksList(props) {
     let num = props.tasks.length;
 
     return (
-        <div className={s.taskList}>
+        <div>
             <div className={s.header}>
                 <h2>{props.title} <span>({num})</span></h2>
             </div>

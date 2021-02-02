@@ -15,7 +15,6 @@ function Workflow({tasksList}) {
     let [inProgressTasks, setInProgressTasks] = useState(tasks.filter(item => item.progressStatus && !item.doneStatus));
     let [completedTasks, setCompletedTasks] = useState(tasks.filter(item => item.doneStatus));
 
-
     let splitToLists = () => {
         setToDoTasks(tasksList.filter(item => !item.progressStatus && !item.doneStatus));
         setInProgressTasks(tasksList.filter(item => item.progressStatus && !item.doneStatus));
@@ -26,27 +25,6 @@ function Workflow({tasksList}) {
     useEffect(() => {
         splitToLists(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tasksList]);
-
-    let setTaskToDo = (id) => {
-        let task = tasks.find(item => item.id === Number(id));
-        task.doneStatus = 0;
-        task.progressStatus = 0;
-        splitToLists();
-    }
-
-    let setTaskInProgress = (id) => {
-        let task = tasks.find(item => item.id === Number(id));
-        task.doneStatus = 0;
-        task.progressStatus = 1;
-        splitToLists();
-    }
-
-    let setTaskComplete = (id) => {
-        let task = tasks.find(item => item.id === Number(id));
-        task.doneStatus = 1;
-        task.progressStatus = 0;
-        splitToLists();
-    }
 
     let onDragEnd = result => {
         const {destination, source, draggableId} = result;
