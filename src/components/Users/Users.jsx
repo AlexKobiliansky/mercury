@@ -16,6 +16,11 @@ const BY_NAME_DESC = 'By name DESC';
 const BY_POST_ASC = 'By post ASC';
 const BY_POST_DESC = 'By post DESC';
 
+const selectData = {
+    list: ['Default', ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC],
+    label: 'Sort'
+};
+
 function Users({sorting, sortUsers, usersList}) {
 
     let [users, setUsers] = useState(usersList);
@@ -53,16 +58,9 @@ function Users({sorting, sortUsers, usersList}) {
         setUsers([...users]); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sorting]);
 
-
     useEffect(() => {
         setUsers(usersList);
     }, [usersList])
-
-
-    let selectData = {
-        list: ['Default', ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC],
-        label: 'Sort'
-    };
 
     let onSortUsers = (e) => {
         sortUsers(e.value);
@@ -75,7 +73,7 @@ function Users({sorting, sortUsers, usersList}) {
                 <Select
                     data={selectData}
                     changeOption={onSortUsers}
-                    customPadding={{padding: '15px 15px 15px 60px'}}
+                    customPadding={{padding: '15px 15px 15px 52px'}}
                     selectedOption={sorting}
                 />
             </BoxHeader>
