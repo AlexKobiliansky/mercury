@@ -24,8 +24,7 @@ function Workflow({tasksList}) {
     }
 
     useEffect(() => {
-        setTasks(tasksList);
-        splitToLists();
+        splitToLists(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tasksList]);
 
     let setTaskToDo = (id) => {
@@ -118,24 +117,15 @@ function Workflow({tasksList}) {
                 <TasksList
                     title='To Do'
                     tasks={toDoTasks}
-                    listId="1"
-                    setTaskComplete={setTaskComplete}
-                    setTaskToDo={setTaskToDo}
-                    setTaskInProgress={setTaskInProgress}/>
+                    listId="1" />
                 <TasksList
                     title='In Progress'
                     tasks={inProgressTasks}
-                    listId="2"
-                    setTaskComplete={setTaskComplete}
-                    setTaskToDo={setTaskToDo}
-                    setTaskInProgress={setTaskInProgress}/>
+                    listId="2" />
                 <TasksList
                     title='Completed'
                     tasks={completedTasks}
-                    listId="3"
-                    setTaskComplete={setTaskComplete}
-                    setTaskToDo={setTaskToDo}
-                    setTaskInProgress={setTaskInProgress}/>
+                    listId="3" />
             </DragDropContext>
         </div>
     );

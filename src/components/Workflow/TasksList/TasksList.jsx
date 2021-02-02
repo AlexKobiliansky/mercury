@@ -30,16 +30,7 @@ function TasksList(props) {
                                             <Task
                                                 key={task.id}
                                                 task={task}
-                                                // id={`${task.id}`}
-                                                // title={task.title}
-                                                // description={task.description}
-                                                // doneStatus={task.doneStatus}
-                                                // progressStatus={task.progressStatus}
-                                                // deadline={task.deadline}
                                                 index={index}
-                                                setTaskComplete={props.setTaskComplete}
-                                                setTaskToDo={props.setTaskToDo}
-                                                setTaskInProgress={props.setTaskInProgress}
                                             />
 
                                         </div>

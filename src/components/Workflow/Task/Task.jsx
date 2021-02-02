@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
 import Status from "./Status/Status";
-import {deleteTask} from '../../../redux/actions/tasks';
+import {deleteTask, setTaskComplete, setTaskInProgress, setTaskToDo} from '../../../redux/actions/tasks';
 import {connect} from 'react-redux'
 
 //Material UI
@@ -42,24 +42,19 @@ function Task(props) {
     let letter = props.task.title.charAt(0);
 
     let setToDo = () => {
-        props.setTaskToDo(props.id);
+        props.setTaskToDo(props.task.id);
+        handleClose();
+        // props.setTaskToDo(props.id);
     }
 
     let setInProgress = () => {
-        props.setTaskInProgress(props.id);
+        props.setTaskInProgress(props.task.id);
+        handleClose();
     }
 
     let setComplete = () => {
-        props.setTaskComplete(props.id);
+        props.setTaskComplete(props.task.id);
     }
-
-    // let deleteTask = () => {
-    //     if (window.confirm('Delete task "' + props.title + '" Are you sure?')) {
-    //         alert('delete')
-    //     }
-    //     handleClose();
-    // }
-
 
     const [openDialog, setOpenDialog] = useState(false);
 
@@ -129,7 +124,10 @@ function Task(props) {
 }
 
 const mapDispatchToProps = {
-    deleteTask
+    deleteTask,
+    setTaskInProgress,
+    setTaskToDo,
+    setTaskComplete
 }
 
 export default connect(null, mapDispatchToProps)(Task);

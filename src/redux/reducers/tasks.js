@@ -1,4 +1,5 @@
-import {DELETE_TASK} from '../types';
+import produce from "immer";
+import {DELETE_TASK, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
 
 const initialState = {
     tasks: [
@@ -196,6 +197,46 @@ const tasks = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: state.tasks.filter(item => item.id !== action.payload)
+            };
+        case SET_TASK_TODO:
+            const updatedTasks = produce(state.tasks, draft => {
+                const index = draft.findIndex(task => task.id === action.payload)
+                if (index !== -1) {
+                    draft[index].doneStatus = 0;
+                    draft[index].progressStatus = 0;
+                }
+            });
+
+            return {
+                ...state,
+                tasks: updatedTasks
+            };
+        case SET_TASK_IN_PROGRESS:
+            const updatedTasks2 = produce(state.tasks, draft => {
+                const index = draft.findIndex(task => task.id === action.payload)
+                if (index !== -1) {
+                    draft[index].doneStatus = 0;
+                    draft[index].progressStatus = 1;
+                }
+            });
+
+            return {
+                ...state,
+                tasks: updatedTasks2
+            };
+
+        case SET_TASK_COMPLETE:
+            const updatedTasks3 = produce(state.tasks, draft => {
+                const index = draft.findIndex(task => task.id === action.payload)
+                if (index !== -1) {
+                    draft[index].doneStatus = 1;
+                    draft[index].progressStatus = 0;
+                }
+            });
+
+            return {
+                ...state,
+                tasks: updatedTasks3
             };
         default: return state;
     }
