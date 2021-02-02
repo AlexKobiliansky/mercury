@@ -6,9 +6,13 @@ import { DragDropContext } from 'react-beautiful-dnd';
 //styles
 import s from './Workflow.module.sass'
 import {connect} from 'react-redux';
+import {setDragAction, setTaskComplete, setTaskInProgress, setTaskToDo} from '../../redux/actions/tasks';
 
 
-function Workflow({tasksList}) {
+function Workflow({tasksList, setTaskInProgress, setTaskToDo, setTaskComplete, setDragAction, dragged}) {
+
+    console.log('Dragged', dragged);
+
     let [tasks, setTasks] = useState(tasksList);
 
     let [toDoTasks, setToDoTasks] = useState(tasks.filter(item => !item.progressStatus && !item.doneStatus));
@@ -16,9 +20,14 @@ function Workflow({tasksList}) {
     let [completedTasks, setCompletedTasks] = useState(tasks.filter(item => item.doneStatus));
 
     let splitToLists = () => {
-        setToDoTasks(tasksList.filter(item => !item.progressStatus && !item.doneStatus));
-        setInProgressTasks(tasksList.filter(item => item.progressStatus && !item.doneStatus));
-        setCompletedTasks(tasksList.filter(item => item.doneStatus));
+        if(!dragged) {
+            setToDoTasks(tasksList.filter(item => !item.progressStatus && !item.doneStatus));
+            setInProgressTasks(tasksList.filter(item => item.progressStatus && !item.doneStatus));
+            setCompletedTasks(tasksList.filter(item => item.doneStatus));
+        }
+
+        setDragAction(false)
+
         setTasks([...tasksList]);
     }
 
@@ -64,27 +73,25 @@ function Workflow({tasksList}) {
             switch (destination.droppableId) {
                 case "1":
                     finishList = toDoTasks;
-                    dragableItem.doneStatus = 0;
-                    dragableItem.progressStatus = 0;
+                    setTaskToDo(Number(draggableId));
                     finishList.splice(destination.index, 0, dragableItem);
                     setToDoTasks(finishList)
                     break;
                 case "2":
                     finishList = inProgressTasks;
-                    dragableItem.doneStatus = 0;
-                    dragableItem.progressStatus = 1;
+                    setTaskInProgress(Number(draggableId));
                     finishList.splice(destination.index, 0, dragableItem);
                     setInProgressTasks(finishList);
                     break;
                 case "3":
                     finishList = completedTasks;
-                    dragableItem.doneStatus = 1;
-                    dragableItem.progressStatus = 0;
+                    setTaskComplete(Number(draggableId))
                     finishList.splice(destination.index, 0, dragableItem);
                     setCompletedTasks(finishList);
                     break;
                 default: return;
             }
+            // setDragAction(true);
             setTasks([...tasks]);
         }
     }
@@ -111,8 +118,16 @@ function Workflow({tasksList}) {
 
 const mapStateToProps = (state) => {
     return {
-        tasksList: state.tasks.tasks
+        tasksList: state.tasks.tasks,
+        dragged: state.tasks.dragAction
     }
 }
 
-export default withAuthRedirect(connect(mapStateToProps, null)(Workflow));
+const mapDispatchToProps = {
+    setTaskInProgress,
+    setTaskToDo,
+    setTaskComplete,
+    setDragAction
+}
+
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Workflow));

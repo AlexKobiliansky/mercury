@@ -1,5 +1,5 @@
 import produce from "immer";
-import {DELETE_TASK, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
+import {DELETE_TASK, SET_DRAG_ACTION, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
 
 const initialState = {
     tasks: [
@@ -188,7 +188,7 @@ const initialState = {
             deadline: '2021-01-07T13:51:50'
         }
     ],
-    some: ''
+    dragAction: false
 }
 
 const tasks = (state=initialState, action) => {
@@ -237,6 +237,13 @@ const tasks = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: updatedTasks3
+            };
+
+        case SET_DRAG_ACTION:
+            console.log('reducer works')
+            return {
+                ...state,
+                dragAction: action.payload
             };
         default: return state;
     }
