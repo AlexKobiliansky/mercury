@@ -45,15 +45,12 @@ function Header(props) {
     return (
         <div className={s.header}>
             <div className={s.headerLeft}>
-                <Hamburger
-                    toggleSidebar={props.toggleSidebar}
-                    hiddenSidebar={props.hiddenSidebar}/>
+                <Hamburger />
                 <SearchLine/>
             </div>
 
             <div className={s.headerRight}>
-                <Button customClass={s.button}
-                >Add project</Button>
+                <Button customClass={s.button}>Add project</Button>
                 <div className={`${s.badgesWrap} ${classes.root}`}>
                     <Badge
                         badgeContent={4}

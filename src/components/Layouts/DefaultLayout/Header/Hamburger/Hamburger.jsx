@@ -1,13 +1,25 @@
 import React from 'react';
-import s from './Hamburger.module.sass';
 import classNames from 'classnames';
+import s from './Hamburger.module.sass';
+import {connect} from 'react-redux';
+import {toggleSidebar} from '../../../../../redux/actions/sidebar';
 
-function Hamburger(props) {
+function Hamburger({openedSidebar, toggleSidebar}) {
     return (
-        <div className={classNames(s.hamburger, {[s.active]: !props.hiddenSidebar})} onClick={props.toggleSidebar}>
-            <div className={s.hamburgerInner}></div>
+        <div className={classNames(s.hamburger, {[s.active]: openedSidebar})} onClick={toggleSidebar}>
+            <div className={s.hamburgerInner} />
         </div>
     );
 }
 
-export default Hamburger;
+const mapStateToProps = (state) => {
+    return {
+        openedSidebar: state.sidebar.openedSidebar,
+    }
+}
+
+const mapDispatchToProps = {
+    toggleSidebar
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hamburger);

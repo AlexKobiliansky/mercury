@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import TasksList from './TasksList/TasksList';
 import { DragDropContext } from 'react-beautiful-dnd';
-
-//styles
-import s from './Workflow.module.sass'
 import {connect} from 'react-redux';
 import {changeTaskStatus} from '../../redux/actions/tasks';
 
+//styles
+import s from './Workflow.module.sass'
 
 function Workflow({tasksList, changeTaskStatus}) {
 
@@ -82,7 +81,6 @@ function Workflow({tasksList, changeTaskStatus}) {
         startList.splice(source.index, 1)
         finishList.splice(destination.index, 0, dragableItem);
     }
-
 
     return (
         <div className={s.workflow}>
