@@ -6,10 +6,10 @@ import { DragDropContext } from 'react-beautiful-dnd';
 //styles
 import s from './Workflow.module.sass'
 import {connect} from 'react-redux';
-import {setTaskComplete, setTaskInProgress, setTaskToDo} from '../../redux/actions/tasks';
+import {changeTaskStatus} from '../../redux/actions/tasks';
 
 
-function Workflow({tasksList, setTaskInProgress, setTaskToDo, setTaskComplete, dragged}) {
+function Workflow({tasksList, changeTaskStatus}) {
 
     let [tasks, setTasks] = useState(tasksList);
 
@@ -32,19 +32,17 @@ function Workflow({tasksList, setTaskInProgress, setTaskToDo, setTaskComplete, d
     let onDragEnd = result => {
         const {destination, source, draggableId} = result;
 
-        if (!destination) {
-            return;
-        }
+        if (!destination) return;
 
         if (
             destination.droppableId === source.droppableId &&
             destination.index === source.index
-        ) {
-            return;
-        }
+        ) return;
 
         let startList;
         let finishList;
+        let prevItem;
+        let prevItemIndex;
 
         switch (source.droppableId) {
             case "1": startList = toDoTasks;
@@ -56,43 +54,35 @@ function Workflow({tasksList, setTaskInProgress, setTaskToDo, setTaskComplete, d
             default: return;
         }
 
+        switch (destination.droppableId) {
+            case "1":
+                finishList = toDoTasks;
+                break;
+            case "2":
+                finishList = inProgressTasks;
+                break;
+            case "3":
+                finishList = completedTasks;
+                break;
+            default: return;
+        }
+
         let dragableItem = startList.find(item => item.id === Number(draggableId));
 
-
-        if (source.droppableId === destination.droppableId) {
-            startList.splice(source.index, 1)
-            startList.splice(destination.index, 0, dragableItem);
+        if (destination.droppableId === source.droppableId) {
+            prevItemIndex = destination.index > source.index ? destination.index : destination.index - 1;
+            prevItem = finishList[prevItemIndex];
         } else {
-
-            startList.splice(source.index, 1)
-            switch (destination.droppableId) {
-                case "1":
-                    finishList = toDoTasks;
-                    let prevItem = finishList[destination.index-1];
-                    let prevId = prevItem ? prevItem.id : null;
-                    // console.log(dragableItem);
-                    // console.log(prevItem);
-                    setTaskToDo(Number(draggableId), prevId);
-                    finishList.splice(destination.index, 0, dragableItem);
-                    setToDoTasks(finishList)
-                    break;
-                case "2":
-                    finishList = inProgressTasks;
-                    setTaskInProgress(Number(draggableId));
-                    finishList.splice(destination.index, 0, dragableItem);
-                    setInProgressTasks(finishList);
-                    break;
-                case "3":
-                    finishList = completedTasks;
-                    setTaskComplete(Number(draggableId))
-                    finishList.splice(destination.index, 0, dragableItem);
-                    setCompletedTasks(finishList);
-                    break;
-                default: return;
-            }
-            // setTasks([...tasks]);
+            prevItem = finishList[destination.index - 1];
         }
+
+        let prevId = prevItem ? prevItem.id : null;
+        changeTaskStatus(Number(draggableId), prevId, Number(destination.droppableId));
+
+        startList.splice(source.index, 1)
+        finishList.splice(destination.index, 0, dragableItem);
     }
+
 
     return (
         <div className={s.workflow}>
@@ -117,14 +107,11 @@ function Workflow({tasksList, setTaskInProgress, setTaskToDo, setTaskComplete, d
 const mapStateToProps = (state) => {
     return {
         tasksList: state.tasks.tasks,
-        dragged: state.tasks.dragAction
     }
 }
 
 const mapDispatchToProps = {
-    setTaskInProgress,
-    setTaskToDo,
-    setTaskComplete,
+    changeTaskStatus
 }
 
 export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Workflow));

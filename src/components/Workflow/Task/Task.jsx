@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Label from "../../ui/atoms/Label/Label";
 import TruncateMarkup from 'react-truncate-markup';
 import Status from "./Status/Status";
-import {deleteTask, setTaskComplete, setTaskInProgress, setTaskToDo} from '../../../redux/actions/tasks';
+import {changeTaskStatus, deleteTask} from '../../../redux/actions/tasks';
 import {connect} from 'react-redux'
 
 //Material UI
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Task({task, setTaskToDo, setTaskInProgress, setTaskComplete, customClass, deleteTask, index}) {
+function Task({task, setTaskToDo, setTaskInProgress, setTaskComplete, customClass, deleteTask, index, changeTaskStatus}) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -74,10 +74,10 @@ function Task({task, setTaskToDo, setTaskInProgress, setTaskComplete, customClas
                 open={open}
                 onClose={handleClose}
             >
-                {!task.doneStatus && <MenuItem onClick={() => setTaskComplete(task.id)}>Set task as "Complete"</MenuItem>}
-                {!task.progressStatus && <MenuItem onClick={() => setTaskInProgress(task.id)}>Set task as "In progress"</MenuItem>}
+                {!task.doneStatus && <MenuItem onClick={() => changeTaskStatus(task.id, null, 3)}>Set task as "Complete"</MenuItem>}
+                {!task.progressStatus && <MenuItem onClick={() => changeTaskStatus(task.id, null, 2)}>Set task as "In progress"</MenuItem>}
                 {(task.doneStatus || task.progressStatus) ?
-                    <MenuItem onClick={() => setTaskToDo(task.id)}> Set task as "To Do"</MenuItem> : ''}
+                    <MenuItem onClick={() => changeTaskStatus(task.id, null, 1)}> Set task as "To Do"</MenuItem> : ''}
                 <MenuItem onClick={handleDialog}>Delete</MenuItem>
             </Menu>
 
@@ -104,9 +104,7 @@ function Task({task, setTaskToDo, setTaskInProgress, setTaskComplete, customClas
 
 const mapDispatchToProps = {
     deleteTask,
-    setTaskInProgress,
-    setTaskToDo,
-    setTaskComplete
+    changeTaskStatus
 }
 
 export default connect(null, mapDispatchToProps)(Task);

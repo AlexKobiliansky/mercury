@@ -1,5 +1,5 @@
 import produce from "immer";
-import {DELETE_TASK, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
+import {CHANGE_TASK_STATUS, DELETE_TASK} from '../types'; 
 
 const initialState = {
     tasks: [
@@ -198,55 +198,44 @@ const tasks = (state=initialState, action) => {
                 ...state,
                 tasks: state.tasks.filter(item => item.id !== action.payload)
             };
-        case SET_TASK_TODO:
+
+        case CHANGE_TASK_STATUS:
             const updatedTasks = produce(state.tasks, draft => {
-                const index = draft.findIndex(task => task.id === action.payload.id)
+                const index = draft.findIndex(task => task.id === action.payload.id);
+                const changingTask = draft[index];
 
                 if (index !== -1) {
-                    draft[index].doneStatus = 0;
-                    draft[index].progressStatus = 0;
+                    switch(action.payload.listId) {
+                        case 1:
+                            changingTask.doneStatus = 0;
+                            changingTask.progressStatus = 0;
+                            break;
+                        case 2:
+                            changingTask.doneStatus = 0;
+                            changingTask.progressStatus = 1;
+                            break;
+                        case 3:
+                            changingTask.doneStatus = 1;
+                            changingTask.progressStatus = 0;
+                            break;
+                        default: return;
+                    }
+
+                    draft.splice(index, 1);
                     if (action.payload.prevId) {
                         const prevIndex = draft.findIndex(task => task.id === action.payload.prevId)
-                        draft.splice(prevIndex+1, 0, draft[index])
+                        draft.splice(prevIndex+1, 0, changingTask)
                     } else {
-                        draft.unshift(draft[index]);
+                        draft.unshift(changingTask);
                     }
-                    draft.splice(index+1, 1);
                 }
             });
 
-            console.log(updatedTasks)
             return {
                 ...state,
                 tasks: updatedTasks
             };
-        case SET_TASK_IN_PROGRESS:
-            const updatedTasks2 = produce(state.tasks, draft => {
-                const index = draft.findIndex(task => task.id === action.payload)
-                if (index !== -1) {
-                    draft[index].doneStatus = 0;
-                    draft[index].progressStatus = 1;
-                }
-            });
 
-            return {
-                ...state,
-                tasks: updatedTasks2
-            };
-
-        case SET_TASK_COMPLETE:
-            const updatedTasks3 = produce(state.tasks, draft => {
-                const index = draft.findIndex(task => task.id === action.payload)
-                if (index !== -1) {
-                    draft[index].doneStatus = 1;
-                    draft[index].progressStatus = 0;
-                }
-            });
-
-            return {
-                ...state,
-                tasks: updatedTasks3
-            };
         default: return state;
     }
 }
