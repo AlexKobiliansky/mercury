@@ -1,5 +1,5 @@
 import produce from "immer";
-import {CHANGE_TASK_STATUS, DELETE_TASK} from '../types'; 
+import {CHANGE_TASK_STATUS, DELETE_TASK} from '../types';
 
 const initialState = {
     tasks: [
