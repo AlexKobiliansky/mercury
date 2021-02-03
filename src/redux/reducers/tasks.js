@@ -1,5 +1,5 @@
 import produce from "immer";
-import {DELETE_TASK, SET_DRAG_ACTION, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
+import {DELETE_TASK, SET_TASK_COMPLETE, SET_TASK_IN_PROGRESS, SET_TASK_TODO} from '../types';
 
 const initialState = {
     tasks: [
@@ -200,13 +200,22 @@ const tasks = (state=initialState, action) => {
             };
         case SET_TASK_TODO:
             const updatedTasks = produce(state.tasks, draft => {
-                const index = draft.findIndex(task => task.id === action.payload)
+                const index = draft.findIndex(task => task.id === action.payload.id)
+
                 if (index !== -1) {
                     draft[index].doneStatus = 0;
                     draft[index].progressStatus = 0;
+                    if (action.payload.prevId) {
+                        const prevIndex = draft.findIndex(task => task.id === action.payload.prevId)
+                        draft.splice(prevIndex+1, 0, draft[index])
+                    } else {
+                        draft.unshift(draft[index]);
+                    }
+                    draft.splice(index+1, 1);
                 }
             });
 
+            console.log(updatedTasks)
             return {
                 ...state,
                 tasks: updatedTasks
@@ -237,13 +246,6 @@ const tasks = (state=initialState, action) => {
             return {
                 ...state,
                 tasks: updatedTasks3
-            };
-
-        case SET_DRAG_ACTION:
-            console.log('reducer works')
-            return {
-                ...state,
-                dragAction: action.payload
             };
         default: return state;
     }
