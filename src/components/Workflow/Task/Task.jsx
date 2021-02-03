@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Task({task, setTaskToDo, setTaskInProgress, setTaskComplete, customClass, deleteTask, index, changeTaskStatus}) {
+function Task({task, customClass, deleteTask, changeTaskStatus}) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
