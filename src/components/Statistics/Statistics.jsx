@@ -12,7 +12,7 @@ import statsImg2 from 'img/stats-img-2.png';
 import {LAST_MONTH, LAST_SIX_MONTH, LAST_WEEK, LAST_YEAR, YESTERDAY} from '../../constants/charts/charts';
 import {connect} from 'react-redux';
 import {changeUsersChart} from '../../redux/actions/statistics';
-import UsersChart from './usersChart/UsersChart';
+import UsersChart from './UsersChart/UsersChart';
 
 const selectData = {
     list: [LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY],

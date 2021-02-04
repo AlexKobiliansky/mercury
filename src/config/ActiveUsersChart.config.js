@@ -48,18 +48,20 @@ const ReportChart = {
   legend: {
     enabled: false
   },
-  series: [{
-    name: 'Total sales',
-    data: [0,0,0,0,0,6,0,0,0,1,0,2],
-    color: {
-      linearGradient: [0, 0, 1000, 0],
-      stops: [
-        [0, '#5f80f7'],
-        [0.5, '#a95fbb'],
-        [1, '#fb3c79']
-      ]
+  series: [
+    {
+      name: 'Total sales',
+      data: [0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 0, 2],
+      color: {
+        linearGradient: [0, 0, 1000, 0],
+        stops: [
+          [0, '#5f80f7'],
+          [0.5, '#a95fbb'],
+          [1, '#fb3c79']
+        ]
+      }
     }
-  }],
+  ],
   credits: {
     enabled: false
   }

@@ -9,9 +9,22 @@ function UsersChart({data, period}) {
 
     useEffect(() => {
         setChartData({
-            series: [
-                { data: data[period]}
-            ]
+            // series: [
+            //     { data: data[period]}
+            // ]
+            //TODO: realize via spread operator 
+            series: [{
+                name: 'Total sales',
+                data: data[period],
+                color: {
+                    linearGradient: [0, 0, 1000, 0],
+                    stops: [
+                        [0, '#5f80f7'],
+                        [0.5, '#a95fbb'],
+                        [1, '#fb3c79']
+                    ]
+                }
+            }]
         }); //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [period]);
 
