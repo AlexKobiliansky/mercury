@@ -13,27 +13,20 @@ import SalesChartConfig from "../../config/SalesChart.config";
 import ReportChartConfig from "../../config/ReportChart.config";
 //styles
 import s from './Home.module.sass';
+import SalesChart from './SalesChart/SalesChart';
+import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/charts';
+import {connect} from 'react-redux';
+import {sortUsers} from '../../redux/actions/users';
+import {changeSalesChart} from '../../redux/actions/salesChart';
+
+const selectData = {
+    list: [LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY],
+    label: 'Period'
+};
+
+function Home({changeSalesChart}) {
 
 
-function Home(props) {
-
-    let SalesData = {
-        'Last Year': [
-            ["Websites", 600], ["Logo", 4123], ["Social Media", 73], ["Adwords", 212], ["E-Commerce", 555]
-        ],
-        'Last 6 month': [
-            ["Websites", 300], ["Logo", 421], ["Social Media", 71], ["Adwords", 90], ["E-Commerce", 555]
-        ],
-        'Last Month': [
-            ["Websites", 255], ["Logo", 43], ["Social Media", 25], ["Adwords", 12], ["E-Commerce", 12]
-        ],
-        'Last Week': [
-            ["Websites", 612], ["Logo", 432], ["Social Media", 137], ["Adwords", 332], ["E-Commerce", 25]
-        ],
-        'Yesterday': [
-            ["Websites", 16], ["Logo", 42], ["Social Media", 70], ["Adwords", 20], ["E-Commerce", 125]
-        ]
-    };
 
     let ReportsData = {
         'Last Year': [300, 320, 400, 700, 700, 620, 670, 433, 200, 310, 150, 220],
@@ -43,47 +36,35 @@ function Home(props) {
         'Yesterday': [111, 222, 1304, 700, 5000, 620, 3740, 2800, 3000, 1500, 1000, 2000],
     };
 
-    let SalesDataSelect = [];
-    for (let item in SalesData) {
-        SalesDataSelect.push(item)
+
+
+    // let ReportsDataSelect = [];
+    // for (let item in ReportsData) {
+    //     ReportsDataSelect.push(item)
+    // }
+
+    // ReportChartConfig.series[0].data = ReportsData["Last Year"]
+
+    // let [reportsChartData, setReportsChartData] = useState(ReportChartConfig);
+
+    let onChangeSalesChart = (e) => {
+        changeSalesChart(e.value)
+    //
+    //     console.log(e.value);
+    //
+    //     setSalesChartData({
+    //         // title: {'text': totalSalesCount(SalesData[value]).toLocaleString('en-US')},
+    //         series: {'data': SalesData[value]},
+    //     });
+    //
+    //     totalSalesCount(SalesData[value]);
     }
 
-    let ReportsDataSelect = [];
-    for (let item in ReportsData) {
-        ReportsDataSelect.push(item)
-    }
-
-    let totalSalesCount = (arr) => {
-        let sum = 0;
-        arr.map(value => {
-            return sum = sum + value[1];
-        })
-
-        return sum;
-    }
-
-    SalesChartConfig.series[0].data = SalesData["Last Year"];
-    SalesChartConfig.title.text = totalSalesCount(SalesData["Last Year"]).toLocaleString('en-US');
-
-    ReportChartConfig.series[0].data = ReportsData["Last Year"]
-
-    let [salesChartData, setSalesChartData] = useState(SalesChartConfig);
-    let [reportsChartData, setReportsChartData] = useState(ReportChartConfig);
-
-    let changeSalesSelect = (value) => {
-        setSalesChartData({
-            title: {'text': totalSalesCount(SalesData[value]).toLocaleString('en-US')},
-            series: {'data': SalesData[value]},
-        });
-
-        totalSalesCount(SalesData[value]);
-    }
-
-    let changeReportSelect = (value) => {
-        setReportsChartData({
-            series: {'data': ReportsData[value]},
-        });
-    }
+    // let changeReportSelect = (value) => {
+    //     setReportsChartData({
+    //         series: {'data': ReportsData[value]},
+    //     });
+    // }
 
     const name = JSON.parse(localStorage.getItem('username'));
 
@@ -95,29 +76,26 @@ function Home(props) {
                     <BoxHeader>
                         <h2>Your sales</h2>
                         <Select
-                            data={SalesDataSelect}
-                            changeOption={changeSalesSelect}
+                            data={selectData}
+                            changeOption={onChangeSalesChart}
                         />
                     </BoxHeader>
-                    <HighchartsReact
-                        highcharts={Highcharts}
-                        options={salesChartData}
-                    />
+                    <SalesChart />
                 </Box>
 
-                <Box customClass={s.boxPadding}>
-                    <BoxHeader>
-                        <h2>Report</h2>
-                        <Select
-                            data={ReportsDataSelect}
-                            changeOption={changeReportSelect}
-                        />
-                    </BoxHeader>
-                    <HighchartsReact
-                        highcharts={Highcharts}
-                        options={reportsChartData}
-                    />
-                </Box>
+                {/*<Box customClass={s.boxPadding}>*/}
+                {/*    <BoxHeader>*/}
+                {/*        <h2>Report</h2>*/}
+                {/*        <Select*/}
+                {/*            data={ReportsDataSelect}*/}
+                {/*            changeOption={changeReportSelect}*/}
+                {/*        />*/}
+                {/*    </BoxHeader>*/}
+                {/*    <HighchartsReact*/}
+                {/*        highcharts={Highcharts}*/}
+                {/*        options={reportsChartData}*/}
+                {/*    />*/}
+                {/*</Box>*/}
             </div>
 
             <div className={s.homeBottom}>
@@ -129,4 +107,15 @@ function Home(props) {
     );
 }
 
-export default withAuthRedirect(Home);
+// const mapStateToProps = (state) => {
+//     return {
+//         sorting: state.users.sorting,
+//         usersList: state.users.users
+//     }
+// }
+
+const mapDispatchToProps = {
+    changeSalesChart
+}
+
+export default withAuthRedirect(connect(null, mapDispatchToProps)(Home));
