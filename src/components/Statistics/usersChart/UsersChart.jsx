@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import chartConfig from '../../../config/ReportChart.config';
+import chartConfig from '../../../config/ActiveUsersChart.config';
 import {connect} from 'react-redux';
 
-
-function ReportsChart({period, data}) {
+function UsersChart({data, period}) {
     let [chartData, setChartData] = useState(chartConfig);
 
     useEffect(() => {
@@ -21,16 +20,14 @@ function ReportsChart({period, data}) {
             highcharts={Highcharts}
             options={chartData}
         />
-    )
+    );
 }
 
 const mapStateToProps = (state) => {
     return {
-        period: state.reportsChart.period,
-        data: state.reportsChart.data
+        period: state.stats.period,
+        data: state.stats.data
     }
 }
 
-export default connect(mapStateToProps)(ReportsChart);
-
-
+export default connect(mapStateToProps)(UsersChart);
