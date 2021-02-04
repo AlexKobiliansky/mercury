@@ -62,17 +62,13 @@ function Users({sorting, sortUsers, usersList}) {
         setUsers(usersList);
     }, [usersList])
 
-    let onSortUsers = (e) => {
-        sortUsers(e.value);
-    }
-
     return (
         <div>
             <BoxHeader customClass={hs.marginHeader}>
                 <h1>Users {num>0 && <span>({num})</span>}</h1>
                 <Select
                     data={selectData}
-                    changeOption={onSortUsers}
+                    changeOption={(e) => sortUsers(e.value)}
                     customPadding={{padding: '15px 15px 15px 52px'}}
                     selectedOption={sorting}
                 />

@@ -19,7 +19,7 @@ const selectData = {
     label: 'Period'
 };
 
-function Home({changeSalesChart, changeReportsChart}) {
+function Home({changeSalesChart, changeReportsChart, salesPeriod, reportsPeriod}) {
 
     const name = JSON.parse(localStorage.getItem('username'));
 
@@ -33,6 +33,7 @@ function Home({changeSalesChart, changeReportsChart}) {
                         <Select
                             data={selectData}
                             changeOption={(e) => changeSalesChart(e.value)}
+                            selectedOption={salesPeriod}
                         />
                     </BoxHeader>
                     <SalesChart />
@@ -44,6 +45,7 @@ function Home({changeSalesChart, changeReportsChart}) {
                         <Select
                             data={selectData}
                             changeOption={(e) => changeReportsChart(e.value)}
+                            selectedOption={reportsPeriod}
                         />
                     </BoxHeader>
                     <ReportsChart />
@@ -59,9 +61,18 @@ function Home({changeSalesChart, changeReportsChart}) {
     );
 }
 
+
+const mapStateToProps = (state) => {
+    return {
+        salesPeriod: state.salesChart.period,
+        reportsPeriod: state.reportsChart.period
+    }
+}
+
+
 const mapDispatchToProps = {
     changeSalesChart,
     changeReportsChart
 }
 
-export default withAuthRedirect(connect(null, mapDispatchToProps)(Home));
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Home));

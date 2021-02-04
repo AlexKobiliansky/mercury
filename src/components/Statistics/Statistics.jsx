@@ -19,7 +19,7 @@ const selectData = {
     label: 'Period'
 };
 
-function Statistics({changeUsersChart}) {
+function Statistics({changeUsersChart, period}) {
 
     let circlesData = {
         'first data' : {
@@ -52,6 +52,7 @@ function Statistics({changeUsersChart}) {
                 <Select
                     data={selectData}
                     changeOption={(e) => changeUsersChart(e.value)}
+                    selectedOption={period}
                 />
             </BoxHeader>
 
@@ -91,8 +92,15 @@ function Statistics({changeUsersChart}) {
     );
 }
 
+
+const mapStateToProps = (state) => {
+    return {
+        period: state.stats.period,
+    }
+}
+
 const mapDispatchToProps = {
     changeUsersChart,
 }
 
-export default withAuthRedirect(connect(null, mapDispatchToProps)(Statistics));
+export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Statistics));
