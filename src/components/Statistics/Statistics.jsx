@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
@@ -19,31 +19,30 @@ const selectData = {
     label: 'Period'
 };
 
-function Statistics({changeUsersChart, period}) {
+function Statistics({changeUsersChart, period, data}) {
+
+    let {directSales, channelSales, otherSales, views} = data[period];
+
+    let sales = directSales + channelSales + otherSales;
 
     let circlesData = {
         'first data' : {
-            id: 1,
             title: 'Direct Sales',
-            value: 2300,
-            percentage: 45
+            value: directSales,
+            percentage: Math.round((directSales/sales) * 100)
         },
         'second data' : {
-            id: 2,
             title: 'Channel Sales',
-            value: 980,
-            percentage: 20
+            value: channelSales,
+            percentage: Math.round((channelSales/sales) * 100)
         },
         'third data' : {
-            id: 1,
-            title: 'Channel Sales',
-            value: 1250,
-            percentage: 25
+            title: 'Other Sales',
+            value: otherSales,
+            percentage: Math.round((otherSales/sales) * 100)
         }
     }
 
-    let sales = 1560;
-    let views = 3230;
 
     return (
         <div>
@@ -96,6 +95,7 @@ function Statistics({changeUsersChart, period}) {
 const mapStateToProps = (state) => {
     return {
         period: state.stats.period,
+        data: state.stats.data
     }
 }
 

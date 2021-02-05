@@ -15,7 +15,7 @@ function UsersChart({data, period}) {
             //TODO: realize via spread operator 
             series: [{
                 name: 'Total sales',
-                data: data[period],
+                data: data[period].data,
                 color: {
                     linearGradient: [0, 0, 1000, 0],
                     stops: [
