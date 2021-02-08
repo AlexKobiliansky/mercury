@@ -9,7 +9,7 @@ import hs from '../Home/Home.module.sass';
 import s from './Statistics.module.sass';
 import statsImg1 from 'img/stats-img-1.png';
 import statsImg2 from 'img/stats-img-2.png';
-import {LAST_MONTH, LAST_SIX_MONTH, LAST_WEEK, LAST_YEAR, YESTERDAY} from '../../constants/charts/charts';
+import {LAST_MONTH, LAST_SIX_MONTH, LAST_WEEK, LAST_YEAR, YESTERDAY} from '../../constants/charts/selects';
 import {connect} from 'react-redux';
 import {changeUsersChart} from '../../redux/actions/statistics';
 import UsersChart from './UsersChart/UsersChart';

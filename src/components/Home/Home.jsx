@@ -8,7 +8,7 @@ import TasksBox from "./TasksBox/TasksBox";
 import ActivityBox from "./ActivityBox/ActivityBox";
 import s from './Home.module.sass';
 import SalesChart from './SalesChart/SalesChart';
-import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/charts';
+import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/selects';
 import {connect} from 'react-redux';
 import {changeSalesChart} from '../../redux/actions/salesChart';
 import ReportsChart from './ReportsChart/ReportsChart';

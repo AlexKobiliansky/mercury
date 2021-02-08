@@ -5,16 +5,9 @@ import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import {connect} from 'react-redux';
 import Table from "./Table/Table";
 import {sortUsers} from "../../redux/actions/users";
-
-//styles
 import hs from "../Home/Home.module.sass";
+import {ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC} from '../../constants/charts/selects';
 
-const ACTIVE_FIRST = 'Active first';
-const ACTIVE_LAST = 'Active last';
-const BY_NAME_ASC = 'By name ASC';
-const BY_NAME_DESC = 'By name DESC';
-const BY_POST_ASC = 'By post ASC';
-const BY_POST_DESC = 'By post DESC';
 
 const selectData = {
     list: ['Default', ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC],
@@ -60,7 +53,7 @@ function Users({sorting, sortUsers, usersList}) {
 
     useEffect(() => {
         setUsers(usersList);
-    }, [usersList])
+    }, [usersList]);
 
     return (
         <div>

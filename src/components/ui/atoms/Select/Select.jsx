@@ -46,7 +46,7 @@ function Select({data, changeOption, customPadding, selectedOption}) {
         })
     }
 
-    const options = data ? data.list.map((item, index) => {
+    const options = data.list ? data.list.map((item, index) => {
         return {value: item, label: item}
     }) : '';
 
@@ -59,7 +59,7 @@ function Select({data, changeOption, customPadding, selectedOption}) {
 
     return (
         <label className={s.selectLabel}>
-            <span>{data.label}:</span>
+            {data.label && <span>{data.label}:</span> }
             { options &&
             <ReactSelect
                 options={options}
@@ -71,4 +71,4 @@ function Select({data, changeOption, customPadding, selectedOption}) {
     );
 }
 
-export default (Select);
+export default Select;

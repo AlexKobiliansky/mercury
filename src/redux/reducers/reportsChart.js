@@ -1,5 +1,5 @@
 import {CHANGE_REPORTS_CHART} from '../types';
-import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/charts';
+import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/selects';
 
 const initialState = {
     data: {
