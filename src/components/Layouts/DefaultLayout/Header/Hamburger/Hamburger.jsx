@@ -1,9 +1,12 @@
 import React from 'react';
+
 import classNames from 'classnames';
-import s from './Hamburger.module.sass';
-import {connect} from 'react-redux';
-import {toggleSidebar} from '../../../../../redux/actions/sidebar';
 import Highcharts from "highcharts";
+import {connect} from 'react-redux';
+
+import {toggleSidebar} from '../../../../../redux/actions/sidebar';
+import s from './Hamburger.module.sass';
+
 
 function Hamburger({openedSidebar, toggleSidebar}) {
 

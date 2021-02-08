@@ -1,16 +1,18 @@
 import React from 'react';
-import ReactTimeAgo from 'react-time-ago';
+
+import TimeAgo from 'javascript-time-ago';
 import { ReactSVG } from 'react-svg';
+import ReactTimeAgo from 'react-time-ago';
 
 //styles
-import s from './Status.module.sass';
-
-//icons
 import clockSvg from 'img/icons/clock-icon.svg';
 import doneSvg from 'img/icons/done-icon.svg';
 
+import s from './Status.module.sass';
 
-import TimeAgo from 'javascript-time-ago';
+//icons
+
+
 
 TimeAgo.addLocale({
     locale: 'ru',

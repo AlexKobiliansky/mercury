@@ -1,8 +1,10 @@
 import React from 'react';
+
 //styles
-import s from './UserInfo.module.sass';
-import Label from "../../ui/atoms/Label/Label";
 import classnames from 'classnames';
+
+import Label from "../../ui/atoms/Label/Label";
+import s from './UserInfo.module.sass';
 
 function UserInfo(props) {
 

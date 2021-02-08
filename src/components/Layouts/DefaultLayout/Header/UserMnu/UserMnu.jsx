@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import {NavLink, withRouter} from 'react-router-dom';
+
 import Menu from '@material-ui/core/Menu';
-import s from './UserMnu.module.sass'
+import {NavLink, withRouter} from 'react-router-dom';
 
 import avaImg from 'img/avatar.png'
+
+import s from './UserMnu.module.sass'
+
 
 function UserMnu(props) {
 

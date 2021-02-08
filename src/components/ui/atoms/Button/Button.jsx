@@ -1,7 +1,9 @@
 import React from 'react';
-import s from './Button.module.sass'
 
 import classnames from 'classnames'
+
+import s from './Button.module.sass'
+
 
 function Button(props) {
     return (

@@ -1,18 +1,20 @@
 import React from 'react';
+
+import {connect} from 'react-redux';
+
+import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/selects';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {changeReportsChart} from '../../redux/actions/reportsChart';
+import {changeSalesChart} from '../../redux/actions/salesChart';
 import Box from "../ui/atoms/Box/Box";
 import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
 import Select from "../ui/atoms/Select/Select";
-import MessagesBox from "./MessagesBox/MessagesBox";
-import TasksBox from "./TasksBox/TasksBox";
 import ActivityBox from "./ActivityBox/ActivityBox";
 import s from './Home.module.sass';
-import SalesChart from './SalesChart/SalesChart';
-import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/selects';
-import {connect} from 'react-redux';
-import {changeSalesChart} from '../../redux/actions/salesChart';
+import MessagesBox from "./MessagesBox/MessagesBox";
 import ReportsChart from './ReportsChart/ReportsChart';
-import {changeReportsChart} from '../../redux/actions/reportsChart';
+import SalesChart from './SalesChart/SalesChart';
+import TasksBox from "./TasksBox/TasksBox";
 
 const selectData = {
     list: [LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY],

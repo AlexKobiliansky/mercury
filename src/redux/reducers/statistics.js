@@ -1,5 +1,5 @@
-import {CHANGE_USERS_CHART} from '../types';
 import {LAST_YEAR, LAST_SIX_MONTH, LAST_MONTH, LAST_WEEK, YESTERDAY} from '../../constants/charts/selects';
+import {CHANGE_USERS_CHART} from '../types';
 
 const initialState = {
     data: {

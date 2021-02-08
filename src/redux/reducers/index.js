@@ -1,10 +1,11 @@
 import {combineReducers} from 'redux';
-import usersReducer from './users';
-import tasksReducer from './tasks';
-import sidebarReducer from './sidebar';
-import salesChartReducer from './salesChart';
+
 import reportsChartReducer from './reportsChart';
+import salesChartReducer from './salesChart';
+import sidebarReducer from './sidebar';
 import statisticsReducer from './statistics';
+import tasksReducer from './tasks';
+import usersReducer from './users';
 
 const rootReducer = combineReducers({
     users: usersReducer,

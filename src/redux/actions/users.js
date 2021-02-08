@@ -1,5 +1,5 @@
-import {SORT_USERS} from '../types';
-import {DELETE_USER} from '../types';
+import {SORT_USERS,DELETE_USER} from '../types';
+
 
 export const sortUsers = (sorting) => ({
     type: SORT_USERS,

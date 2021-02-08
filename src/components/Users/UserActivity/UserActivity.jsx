@@ -1,11 +1,13 @@
 import React from 'react';
+
 import classnames from 'classnames';
-import ReactTimeAgo from 'react-time-ago';
 import { ReactSVG } from 'react-svg';
+import ReactTimeAgo from 'react-time-ago';
+
 //styles
+import clockSvg from '../../../img/icons/clock-icon.svg'
 import s from './UserActivity.module.sass';
 //icons
-import clockSvg from '../../../img/icons/clock-icon.svg'
 
 function UserActivity(props) {
 

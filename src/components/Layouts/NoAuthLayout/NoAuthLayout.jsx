@@ -1,16 +1,18 @@
 import React from 'react';
+
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
+import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/styles';
-import LoginForm from '../../ui/Forms/LoginForm';
-import RegisterForm from '../../ui/Forms/RegisterForm';
+import {NavLink, Redirect} from 'react-router-dom';
 
 import logo from '../../../img/logo.png';
+import LoginForm from '../../ui/Forms/LoginForm';
+import RegisterForm from '../../ui/Forms/RegisterForm';
 import s from './NoAuthLayout.module.sass'
-import {NavLink, Redirect} from 'react-router-dom';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;

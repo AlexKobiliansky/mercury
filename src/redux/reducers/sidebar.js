@@ -1,10 +1,10 @@
-import {TOGGLE_SIDEBAR} from '../types';
 import mnuIcon1 from '../../img/icons/main-mnu/mnu-icon-1.svg';
 import mnuIcon2 from '../../img/icons/main-mnu/mnu-icon-2.svg';
 import mnuIcon3 from '../../img/icons/main-mnu/mnu-icon-3.svg';
 import mnuIcon4 from '../../img/icons/main-mnu/mnu-icon-4.svg';
 import mnuIcon5 from '../../img/icons/main-mnu/mnu-icon-5.svg';
 import mnuIcon6 from '../../img/icons/main-mnu/mnu-icon-6.svg';
+import {TOGGLE_SIDEBAR} from '../types';
 
 const initialState = {
     items: [

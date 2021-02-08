@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from './Header/Header';
-import Sidebar from './Sidebar/Sidebar';
-import PageContent from './PageContent/PageContent';
+
 import classNames from 'classnames';
 import {connect} from 'react-redux';
 
 import s from './DefaultLayout.module.sass';
+import Header from './Header/Header';
+import PageContent from './PageContent/PageContent';
+import Sidebar from './Sidebar/Sidebar';
 
 function DefaultLayout({openedSidebar}) {
     return (

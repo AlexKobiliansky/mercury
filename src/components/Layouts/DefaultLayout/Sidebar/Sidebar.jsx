@@ -1,11 +1,12 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import classNames from 'classnames';
-import NavItem from "./NavItem/NavItem";
-import {connect} from 'react-redux';
 
-import s from './Sidebar.module.sass'
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom';
+
 import logo from "../../../../img/logo.png";
+import NavItem from "./NavItem/NavItem";
+import s from './Sidebar.module.sass'
 
 function Sidebar({items, openedSidebar}) {
     return (
