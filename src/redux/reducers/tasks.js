@@ -1,4 +1,4 @@
-import produce from "immer";
+import {produce} from "immer";
 
 import {CHANGE_TASK_STATUS, DELETE_TASK} from '../types';
 

@@ -6,9 +6,9 @@ import {ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_PO
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {sortUsers} from "../../redux/actions/users";
 import hs from "../Home/Home.module.sass";
-import Table from "./Table/Table";
 import BoxHeader from '../ui/atoms/BoxHeader/BoxHeader';
 import Select from '../ui/atoms/Select/Select';
+import Table from "./Table/Table";
 
 
 const selectData = {

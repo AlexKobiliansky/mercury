@@ -25,10 +25,10 @@
     }
   },
   "rules": {
-    "react/jsx-uses-react": "error",
+    "react/jsx-uses-react": "warn",
     "react/jsx-uses-vars": "warn",
     "import/order": [
-      "error",
+      "warn",
       {
         "groups": ["builtin", "external", "internal"],
         "pathGroups": [
