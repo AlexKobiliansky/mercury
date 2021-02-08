@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
+
 import {ReactSVG} from 'react-svg';
 
+import passwordSvg from '../../../img/icons/password-icon.svg';
+import usernameSvg from '../../../img/icons/username-icon.svg';
 import styles from './Forms.module.sass';
 
-import usernameSvg from '../../../img/icons/username-icon.svg';
-import passwordSvg from '../../../img/icons/password-icon.svg';
 
-function RegisterForm(props) {
+function RegisterForm() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

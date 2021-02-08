@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ReactSelect from 'react-select';
 
 import s from './Select.module.sass'
@@ -46,7 +47,7 @@ function Select({data, changeOption, customPadding, selectedOption}) {
         })
     }
 
-    const options = data.list ? data.list.map((item, index) => {
+    const options = data.list ? data.list.map((item) => {
         return {value: item, label: item}
     }) : '';
 

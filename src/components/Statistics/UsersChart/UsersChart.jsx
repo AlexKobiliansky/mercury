@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import chartConfig from '../../../config/ActiveUsersChart.config';
 import {connect} from 'react-redux';
+
+import chartConfig from '../../../config/ActiveUsersChart.config';
 
 function UsersChart({data, period}) {
     let [chartData, setChartData] = useState(chartConfig);
@@ -25,7 +27,7 @@ function UsersChart({data, period}) {
                     ]
                 }
             }]
-        }); //eslint-disable-next-line react-hooks/exhaustive-deps
+        });
     }, [period]);
 
     return (

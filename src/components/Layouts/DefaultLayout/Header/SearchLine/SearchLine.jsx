@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+
 import { ReactSVG } from 'react-svg';
-import s from './SearchLine.module.sass'
 
 import searchSvg from '../../../../../img/icons/search-icon.svg';
+import s from './SearchLine.module.sass'
 
-function SearchLine(props) {
+
+function SearchLine() {
     const [activeSearch, setActiveSearch] = useState(false)
 
     let toggleSearch = () => {

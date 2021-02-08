@@ -1,15 +1,16 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
-import Home from '../../../Home/Home';
-import Workflow from '../../../Workflow/Workflow';
-import Statistics from '../../../Statistics/Statistics';
-import Calendar from '../../../Calendar/Calendar';
-import Users from '../../../Users/Users';
-import Settings from '../../../Settings/Settings';
 
+import {Route, Switch} from 'react-router-dom';
+
+import Calendar from '../../../Calendar/Calendar';
+import Home from '../../../Home/Home';
+import Settings from '../../../Settings/Settings';
+import Statistics from '../../../Statistics/Statistics';
+import Users from '../../../Users/Users';
+import Workflow from '../../../Workflow/Workflow';
 import s from './PageContent.module.sass';
 
-function PageContent(props) {
+function PageContent() {
     return (
         <div className={s.pageContent}>
             <Switch>

@@ -1,7 +1,8 @@
 import React from 'react';
-import Task from "../Task/Task";
+
 import {Draggable, Droppable} from 'react-beautiful-dnd';
 
+import Task from "../Task/Task";
 //styles
 import s from './TasksList.module.sass'
 

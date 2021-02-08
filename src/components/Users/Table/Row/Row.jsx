@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
-import UserInfo from "../../UserInfo/UserInfo";
-import UserActivity from "../../UserActivity/UserActivity";
+
 
 //Matherial UI
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
 import IconButton from "@material-ui/core/IconButton";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import {makeStyles} from "@material-ui/core/styles";
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
-import {deleteUser} from '../../../../redux/actions/users';
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {connect} from 'react-redux';
 
-const useStyles = makeStyles((theme) => ({
+import {deleteUser} from '../../../../redux/actions/users';
+import UserActivity from "../../UserActivity/UserActivity";
+import UserInfo from "../../UserInfo/UserInfo";
+
+const useStyles = makeStyles(() => ({
     menuItem: {
         boxShadow: '0px 0 5px 1px rgba(0,0,0,0.14)',
     },

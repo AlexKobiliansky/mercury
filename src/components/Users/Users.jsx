@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import Select from "../ui/atoms/Select/Select";
-import BoxHeader from "../ui/atoms/BoxHeader/BoxHeader";
+
 import {connect} from 'react-redux';
-import Table from "./Table/Table";
+
+import {ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC} from '../../constants/charts/selects';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {sortUsers} from "../../redux/actions/users";
 import hs from "../Home/Home.module.sass";
-import {ACTIVE_FIRST, ACTIVE_LAST, BY_NAME_ASC, BY_NAME_DESC, BY_POST_ASC, BY_POST_DESC} from '../../constants/charts/selects';
+import Table from "./Table/Table";
+import BoxHeader from '../ui/atoms/BoxHeader/BoxHeader';
+import Select from '../ui/atoms/Select/Select';
 
 
 const selectData = {
@@ -48,7 +50,7 @@ function Users({sorting, sortUsers, usersList}) {
                 users.sort((a, b) => a.id > b.id ? 1 : -1);
         }
 
-        setUsers([...users]); // eslint-disable-next-line react-hooks/exhaustive-deps
+        setUsers([...users]);
     }, [sorting]);
 
     useEffect(() => {

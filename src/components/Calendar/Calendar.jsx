@@ -1,7 +1,8 @@
 import React from 'react';
+
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
-function Calendar(props) {
+function Calendar() {
     return (
         <div>Calendar</div>
     );

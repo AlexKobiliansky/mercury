@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import chartConfig from '../../../config/ReportChart.config';
 import {connect} from 'react-redux';
+
+import chartConfig from '../../../config/ReportChart.config';
 
 
 function ReportsChart({period, data}) {
@@ -13,7 +15,7 @@ function ReportsChart({period, data}) {
             series: [
                 { data: data[period]}
             ]
-        }); //eslint-disable-next-line react-hooks/exhaustive-deps
+        });
     }, [period]);
 
     return (

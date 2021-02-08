@@ -1,10 +1,10 @@
 import React from 'react';
-import Label from "../../ui/atoms/Label/Label";
+
 import { ReactSVG } from 'react-svg';
 import TruncateMarkup from 'react-truncate-markup';
 
 import clockSvg from '../../../img/icons/clock-icon.svg';
-
+import Label from "../../ui/atoms/Label/Label";
 //styles
 import s from './Move.module.sass'
 

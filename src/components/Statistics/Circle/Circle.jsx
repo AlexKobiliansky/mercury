@@ -1,10 +1,11 @@
 import React from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import ProgressProvider from "./ProgressProvider";
-import {numberWithCommas} from "../../../utils";
 
+import { CircularProgressbar } from 'react-circular-progressbar';
+
+import {numberWithCommas} from "../../../utils";
 //styles
 import s from './Circle.module.sass'
+import ProgressProvider from "./ProgressProvider";
 import 'react-circular-progressbar/dist/styles.css';
 
 

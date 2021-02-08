@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
-import classnames from 'classnames';
-import Label from "../../ui/atoms/Label/Label";
-import TruncateMarkup from 'react-truncate-markup';
-import Status from "./Status/Status";
-import {changeTaskStatus, deleteTask} from '../../../redux/actions/tasks';
-import {connect} from 'react-redux'
 
-//Material UI
+import {Button, Dialog, DialogActions, DialogTitle} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {makeStyles} from '@material-ui/core/styles';
-import {Button, Dialog, DialogActions, DialogTitle} from '@material-ui/core';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import classnames from 'classnames';
+import {connect} from 'react-redux'
+import TruncateMarkup from 'react-truncate-markup';
 
+import {changeTaskStatus, deleteTask} from '../../../redux/actions/tasks';
+import Label from "../../ui/atoms/Label/Label";
+import Status from "./Status/Status";
 //styles
 import s from './Task.module.sass'
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         marginLeft: 'auto',
     }

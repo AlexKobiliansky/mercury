@@ -1,9 +1,11 @@
 import React from 'react';
+
+import {connect} from 'react-redux';
+
+import Box from '../../ui/atoms/Box/Box';
 import BoxHeader from '../../ui/atoms/BoxHeader/BoxHeader';
 import Label from '../../ui/atoms/Label/Label';
 import Task from '../../Workflow/Task/Task';
-import Box from '../../ui/atoms/Box/Box';
-import {connect} from 'react-redux';
 //styles
 import hs from '../Home.module.sass';
 

@@ -1,15 +1,17 @@
 import React from 'react';
-import Hamburger from './Hamburger/Hamburger';
-import SearchLine from './SearchLine/SearchLine';
-import UserMnu from "./UserMnu/UserMnu";
-import s from './Header.module.sass';
-import Button from "../../../ui/atoms/Button/Button";
 
-//Material UI
 import Badge from '@material-ui/core/Badge';
+import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { makeStyles } from '@material-ui/core/styles';
+
+import Button from "../../../ui/atoms/Button/Button";
+import Hamburger from './Hamburger/Hamburger';
+import s from './Header.module.sass';
+import SearchLine from './SearchLine/SearchLine';
+import UserMnu from "./UserMnu/UserMnu";
+
+//Material UI
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Header(props) {
+function Header() {
 
     const classes = useStyles();
 

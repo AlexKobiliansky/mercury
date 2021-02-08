@@ -1,7 +1,8 @@
 import React from 'react';
+
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
-function Settings(props) {
+function Settings() {
     return (
         <div>Settings</div>
     );

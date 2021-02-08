@@ -1,4 +1,5 @@
 import produce from "immer";
+
 import {CHANGE_TASK_STATUS, DELETE_TASK} from '../types';
 
 const initialState = {
@@ -192,6 +193,9 @@ const initialState = {
 }
 
 const tasks = (state=initialState, action) => {
+
+    let updatedTasks;
+
     switch (action.type) {
         case DELETE_TASK:
             return {
@@ -200,7 +204,7 @@ const tasks = (state=initialState, action) => {
             };
 
         case CHANGE_TASK_STATUS:
-            const updatedTasks = produce(state.tasks, draft => {
+            updatedTasks = produce(state.tasks, draft => {
                 const index = draft.findIndex(task => task.id === action.payload.id);
                 const changingTask = draft[index];
 

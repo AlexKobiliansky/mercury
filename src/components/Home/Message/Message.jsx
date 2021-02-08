@@ -1,18 +1,17 @@
 import React from 'react';
-import { ReactSVG } from 'react-svg';
-import Label from "../../ui/atoms/Label/Label";
-import TruncateMarkup from 'react-truncate-markup';
-import classnames from 'classnames';
-import ReactTimeAgo from 'react-time-ago';
 
 //Material UI
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import classnames from 'classnames';
+import { ReactSVG } from 'react-svg';
+import ReactTimeAgo from 'react-time-ago';
+import TruncateMarkup from 'react-truncate-markup';
 
 //icons
 import answerSvg from '../../../img/icons/answer-icon.svg';
 import optionsSvg from '../../../img/icons/options-icon.svg';
-
+import Label from "../../ui/atoms/Label/Label";
 //styles
 import s from './Message.module.sass'
 

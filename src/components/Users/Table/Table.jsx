@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
+
 import Pagination from "../../ui/atoms/Pagination/Pagination";
 import Row from "./Row/Row";
-
 //styles
 import s from './Table.module.sass';
 

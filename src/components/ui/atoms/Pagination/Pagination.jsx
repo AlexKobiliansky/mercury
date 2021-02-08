@@ -1,6 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+
+
+
 //styles
 import s from './Pagination.module.sass';
 
@@ -29,7 +33,7 @@ class Pagination extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         // reset page if items array has changed
         if (this.props.items !== prevProps.items) {
             this.setPage(this.props.initialPage);

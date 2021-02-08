@@ -1,17 +1,19 @@
 import React from 'react';
-import BoxHeader from "../../ui/atoms/BoxHeader/BoxHeader";
-import Label from "../../ui/atoms/Label/Label";
-import Message from "../Message/Message";
-import Box from "../../ui/atoms/Box/Box";
+
 //styles
-import hs from "../Home.module.sass";
 //images
 import ava1 from "img/message-ava-1.jpg";
 import ava2 from "img/message-ava-2.jpg";
 import ava3 from "img/message-ava-3.jpg";
 import ava4 from "img/message-ava-4.jpg";
 
-function MessagesBox(props) {
+import Box from "../../ui/atoms/Box/Box";
+import BoxHeader from "../../ui/atoms/BoxHeader/BoxHeader";
+import Label from "../../ui/atoms/Label/Label";
+import hs from "../Home.module.sass";
+import Message from "../Message/Message";
+
+function MessagesBox() {
 
     var d = new Date();
 

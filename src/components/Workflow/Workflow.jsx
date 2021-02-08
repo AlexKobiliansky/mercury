@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import TasksList from './TasksList/TasksList';
+
 import { DragDropContext } from 'react-beautiful-dnd';
 import {connect} from 'react-redux';
-import {changeTaskStatus} from '../../redux/actions/tasks';
 
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {changeTaskStatus} from '../../redux/actions/tasks';
+import TasksList from './TasksList/TasksList';
 //styles
 import s from './Workflow.module.sass'
 
@@ -25,7 +26,7 @@ function Workflow({tasksList, changeTaskStatus}) {
     }
 
     useEffect(() => {
-        splitToLists(); // eslint-disable-next-line react-hooks/exhaustive-deps
+        splitToLists();
     }, [tasksList]);
 
     let onDragEnd = result => {

@@ -1,12 +1,13 @@
 import React from 'react';
-import BoxHeader from "../../ui/atoms/BoxHeader/BoxHeader";
-import s from "../Home.module.sass";
-import Label from "../../ui/atoms/Label/Label";
-import Move from "../Move/Move";
+
 import ava1 from "../../../img/message-ava-1.jpg";
 import Box from "../../ui/atoms/Box/Box";
+import BoxHeader from "../../ui/atoms/BoxHeader/BoxHeader";
+import Label from "../../ui/atoms/Label/Label";
+import s from "../Home.module.sass";
+import Move from "../Move/Move";
 
-function ActivityBox(props) {
+function ActivityBox() {
     return (
         <Box>
             <BoxHeader customClass={s.paddingHeader}>

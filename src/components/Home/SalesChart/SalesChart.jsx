@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import chartConfig from '../../../config/SalesChart.config';
 import {connect} from 'react-redux';
+
+import chartConfig from '../../../config/SalesChart.config';
 import {numberWithCommas} from '../../../utils';
 
 function SalesChart({data, period}) {
@@ -12,7 +14,7 @@ function SalesChart({data, period}) {
         setChartData({
             title: {'text': totalSalesCount(data[period])},
             series: {'data': data[period]},
-        }); //eslint-disable-next-line react-hooks/exhaustive-deps
+        });
     }, [period]);
 
     let totalSalesCount = (arr) => {
