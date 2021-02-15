@@ -26,7 +26,7 @@ function Workflow({tasksList, changeTaskStatus}) {
     }
 
     useEffect(() => {
-        splitToLists();
+        splitToLists(); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tasksList]);
 
     let onDragEnd = result => {

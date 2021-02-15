@@ -15,7 +15,7 @@ function ReportsChart({period, data}) {
             series: [
                 { data: data[period]}
             ]
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [period]);
 
     return (

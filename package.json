@@ -11,6 +11,7 @@
     "classnames": "^2.2.6",
     "eslint-plugin-react": "^7.22.0",
     "express": "^4.17.1",
+    "formik": "^2.2.6",
     "highcharts": "^8.2.2",
     "highcharts-react-official": "^3.0.0",
     "immer": "^8.0.1",
@@ -31,7 +32,8 @@
     "react-truncate-markup": "^5.1.0",
     "redux": "^4.0.5",
     "styled-components": "^5.2.1",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.8"
   },
   "scripts": {
     "start": "react-scripts start",

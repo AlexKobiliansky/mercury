@@ -14,7 +14,7 @@ function SalesChart({data, period}) {
         setChartData({
             title: {'text': totalSalesCount(data[period])},
             series: {'data': data[period]},
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [period]);
 
     let totalSalesCount = (arr) => {

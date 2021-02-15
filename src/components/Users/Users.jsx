@@ -50,7 +50,7 @@ function Users({sorting, sortUsers, usersList}) {
                 users.sort((a, b) => a.id > b.id ? 1 : -1);
         }
 
-        setUsers([...users]);
+        setUsers([...users]); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sorting]);
 
     useEffect(() => {

@@ -1,30 +1,41 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import { withRouter } from 'react-router-dom'
-import { ReactSVG } from 'react-svg';
+import {withRouter} from 'react-router-dom'
+import {ReactSVG} from 'react-svg';
 
 import passwordSvg from '../../../img/icons/password-icon.svg';
 import usernameSvg from '../../../img/icons/username-icon.svg';
-import styles from './Forms.module.sass';
+import s from './Forms.module.sass';
+
+import {Formik} from 'formik';
+import * as yup from 'yup';
 
 
 function LoginForm(props) {
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const validationSchema = yup.object().shape({
+        username: yup.string()
+            .trim('Check if there any spaces at the beginning or/and at the end of field value')
+            .strict()
+            .typeError('Must be a string')
+            .required('Enter your name')
+            .min(3, 'Your username must be at least 3 characters length')
+            .max(30, 'Your username is to long. It must consist from 3 to 30 characters'),
+        password: yup.string()
+            .trim('Check if there any spaces at the beginning or/and at the end of field value')
+            .strict()
+            .typeError('Must be a string')
+            .required('Enter password')
+            .min(8, 'Your password must be at least 8 characters length')
+            .matches(
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+                "Must contain one uppercase, one lowercase, one number and one special character"
+            )
+    });
 
-    let changeName = (e) => {
-        setUsername(e.target.value);
-    }
-
-    let changePass = (e) => {
-        setPassword(e.target.value);
-    }
-
-    let submitForm = (e) => {
-        e.preventDefault();
+    let submitForm = (values) => {
         let savedName = JSON.parse(localStorage.getItem('username'));
-        if (username === savedName) {
+        if (values.username === savedName) {
             localStorage.setItem('auth', true);
             props.history.push("/")
         } else {
@@ -33,20 +44,64 @@ function LoginForm(props) {
     }
 
     return (
-        <form onSubmit={submitForm}>
-            <h1>Welcome <span>back!</span></h1>
-            <div className={styles.formLabelsWrap}>
-                <label>
-                    <ReactSVG src={usernameSvg} wrapper='span'/>
-                    <input name='username' placeholder='Username' onChange={changeName} value={username}/>
-                </label>
-                <label>
-                    <ReactSVG src={passwordSvg} wrapper='span'/>
-                    <input type='password' name='password' placeholder='Password' onChange={changePass} value={password}/>
-                </label>
-            </div>
-            <button>Enter</button>
-        </form>
+        <div>
+
+            <Formik
+                initialValues={{
+                    username: '',
+                    password: ''
+                }}
+                validateOnBlur
+                onSubmit={(values) => {
+                    submitForm(values)
+                }}
+                validationSchema={validationSchema}
+            >
+                {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleBlur,
+                      isValid,
+                      handleSubmit,
+                      dirty,
+                  }) => (
+                    <form>
+                        <h1>Welcome <span>back!</span></h1>
+                        <div className={s.formLabelsWrap}>
+                            <label className={touched.username && errors.username && s.hasError}>
+                                <ReactSVG src={usernameSvg} wrapper='span'/>
+                                <input
+                                    name='username'
+                                    placeholder='Username'
+                                    onChange={handleChange}
+                                    value={values.username}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.username && errors.username &&
+                                <div className={s.error}>{errors.username}</div>}
+                            </label>
+                            <label className={touched.password && errors.password && s.hasError}>
+                                <ReactSVG src={passwordSvg} wrapper='span'/>
+                                <input
+                                    type='password'
+                                    name='password'
+                                    placeholder='Password'
+                                    onChange={handleChange}
+                                    value={values.password}
+                                    onBlur={handleBlur}
+                                />
+                                {touched.password && errors.password &&
+                                <div className={s.error}>{errors.password}</div>}
+                            </label>
+                        </div>
+                        <button type="submit" disabled={!isValid && !dirty} onClick={handleSubmit}>Enter</button>
+                    </form>
+                )}
+
+            </Formik>
+        </div>
     );
 }
 

@@ -27,7 +27,7 @@ function UsersChart({data, period}) {
                     ]
                 }
             }]
-        });
+        }); // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [period]);
 
     return (
