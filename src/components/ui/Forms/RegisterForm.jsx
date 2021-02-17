@@ -11,8 +11,6 @@ import * as yup from 'yup';
 
 
 function RegisterForm() {
-
-
     const validationSchema = yup.object().shape({
         username: yup.string()
             .trim('Check if there any spaces at the beginning or/and at the end of field value')

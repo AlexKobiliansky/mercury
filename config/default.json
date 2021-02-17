@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoUri": "mongodb+srv://alex:632748@cluster0.yuezr.mongodb.net/mercury?retryWrites=true&w=majority",
+  "jwtSecret": "my_super_secret_key@alexko"
+}
