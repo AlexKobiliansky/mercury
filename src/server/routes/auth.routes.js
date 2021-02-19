@@ -11,20 +11,17 @@ router.post(
   '/register',
   [
     // TODO: add normal validation rules according to rules in front-end (forms validation)
-    check('username', 'Username is too short').isLength({min: 13}),
-    check('password', 'Password is too short').isLength({min: 8})
+    check('username', 'Username is too short').isLength({min: 3}),
+    check('password', 'Password is too short').isLength({min: 5})
   ],
   async (req, res) => {
     try {
       const errors = validationResult(req);
 
-      console.log('test')
-
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
           message: 'Wrong data during registration!',
-          test: 'fuck off'
         })
       }
 
@@ -33,7 +30,7 @@ router.post(
       const candidate = await User.findOne({username});
 
       if (candidate) {
-        return res.status(400).json({message: `User with username "${username} already exists"`})
+        return res.status(400).json({message: `User with username "${username}" already exists`})
       }
 
       const hashedPassword = await bcrypt.hash(password, 7);
@@ -53,8 +50,8 @@ router.post(
 router.post(
   '/login',
   // TODO: add normal validation rules according to rules in front-end (forms validation)
-  check('username', 'Username is too short').isLength({min: 13}),
-  check('password', 'Password is too short').isLength({min: 8}),
+  check('username', 'Username is too short').isLength({min: 3}),
+  check('password', 'Password is too short').isLength({min: 5}),
   async (req, res) => {
     try {
       const errors = validationResult(req);

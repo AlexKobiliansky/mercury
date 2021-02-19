@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {ReactSVG} from 'react-svg';
 
@@ -12,26 +12,26 @@ import {useHttp} from "../../../hooks/http.hook";
 
 
 function RegisterForm() {
-  const {loading, error, request} = useHttp();
+  const {loading, error, request, clearError, successMessage} = useHttp();
 
   const validationSchema = yup.object().shape({
-    username: yup.string()
-      .trim('Check if there any spaces at the beginning or/and at the end of field value')
-      .strict()
-      .typeError('Must be a string')
-      .required('Enter your name')
-      .min(3, 'Your username must be at least 3 characters length')
-      .max(30, 'Your username is to long. It must consist from 3 to 30 characters'),
-    password: yup.string()
-      .trim('Check if there any spaces at the beginning or/and at the end of field value')
-      .strict()
-      .typeError('Must be a string')
-      .required('Enter password')
-      .min(8, 'Your password must be at least 8 characters length')
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "Must contain one uppercase, one lowercase, one number and one special character"
-      ),
+    username: yup.string(),
+      // .trim('Check if there any spaces at the beginning or/and at the end of field value')
+      // .strict()
+      // .typeError('Must be a string')
+      // .required('Enter your name')
+      // .min(3, 'Your username must be at least 3 characters length')
+      // .max(30, 'Your username is to long. It must consist from 3 to 30 characters'),
+    password: yup.string(),
+      // .trim('Check if there any spaces at the beginning or/and at the end of field value')
+      // .strict()
+      // .typeError('Must be a string')
+      // .required('Enter password')
+      // .min(8, 'Your password must be at least 8 characters length')
+      // .matches(
+      //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      //   "Must contain one uppercase, one lowercase, one number and one special character"
+      // ),
     confirmPassword: yup.string()
       .trim('Check if there any spaces at the beginning or/and at the end of field value')
       .strict()
@@ -41,12 +41,13 @@ function RegisterForm() {
   });
 
   let submitForm = async (values) => {
-    // localStorage.setItem('username', JSON.stringify(values.username));
-    // alert('registration success!');
+    clearError();
     try {
-      const data = await request('/api/auth/register', 'POST', {username: values.username, password: values.password});
-    } catch (e) {
-    }
+      const data = await request(
+        '/api/auth/register',
+        'POST',
+        {username: values.username, password: values.password});
+    } catch (e) {}
   }
 
   return (
@@ -76,6 +77,9 @@ function RegisterForm() {
           <form>
             <h1>Registration</h1>
             <div className={s.formLabelsWrap}>
+
+              {successMessage && <div className={s.success}>{successMessage}</div>}
+
               <label className={touched.username && errors.username && s.hasError}>
                 <ReactSVG src={usernameSvg} wrapper='span'/>
                 <input

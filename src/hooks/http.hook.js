@@ -3,6 +3,7 @@ import {useState, useCallback} from 'react';
 export const useHttp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const request = useCallback(
     async (url, method = 'GET', body = null, headers = {}) => {
@@ -15,11 +16,14 @@ export const useHttp = () => {
 
         const response = await fetch(url, {method, body, headers});
         const data = await response.json();
+        const message = data.message;
 
         if (!response.ok) {
-          throw new Error(data.errors[0].msg || data.message || 'Something is wrong http.hook.js')
+          throw new Error(data.errors ? data.errors[0].msg : data.message || 'Something is wrong http.hook.js')
         }
         setLoading(false);
+
+        message && setSuccessMessage(message);
 
         return data;
       } catch (e) {
@@ -29,7 +33,10 @@ export const useHttp = () => {
       }
     }, []);
 
-  const clearError = useCallback(() => setError(null), []);
+  const clearError = useCallback(() => {
+    setError(null);
+    setSuccessMessage(null)
+  }, []);
 
-  return {loading, request, error, clearError}
+  return {loading, request, error, clearError, successMessage}
 }

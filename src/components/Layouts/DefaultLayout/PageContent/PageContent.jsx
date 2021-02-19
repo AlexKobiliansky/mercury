@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import {Route, Switch} from 'react-router-dom';
 
@@ -9,20 +9,21 @@ import Statistics from '../../../Statistics/Statistics';
 import Users from '../../../Users/Users';
 import Workflow from '../../../Workflow/Workflow';
 import s from './PageContent.module.sass';
+import {AuthContext} from '../../../../context/AuthContext';
 
 function PageContent() {
-    return (
-        <div className={s.pageContent}>
-            <Switch>
-                <Route path="/" component={Home} exact/>
-                <Route path="/workflow" component={Workflow} />
-                <Route path="/statistics" component={Statistics} />
-                <Route path="/calendar" component={Calendar} />
-                <Route path="/users" component={Users} />
-                <Route path="/settings" component={Settings} />
-            </Switch>
-        </div>
-    );
+  return (
+    <div className={s.pageContent}>
+      <Switch>
+        <Route path="/" component={Home} exact/>
+        <Route path="/workflow" component={Workflow}/>
+        <Route path="/statistics" component={Statistics}/>
+        <Route path="/calendar" component={Calendar}/>
+        <Route path="/users" component={Users}/>
+        <Route path="/settings" component={Settings}/>
+      </Switch>
+    </div>
+  );
 }
 
 export default PageContent;
