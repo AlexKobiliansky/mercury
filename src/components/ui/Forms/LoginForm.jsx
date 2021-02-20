@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import {withRouter} from 'react-router-dom'
 import {ReactSVG} from 'react-svg';
@@ -10,12 +10,12 @@ import s from './Forms.module.sass';
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import {useHttp} from '../../../hooks/http.hook';
-import {AuthContext} from '../../../context/AuthContext';
+import {useAuth} from '../../../hooks/auth.hook';
 
 
 function LoginForm(props) {
-  const auth = useContext(AuthContext);
-  const {loading, error, request, clearError, successMessage} = useHttp();
+  const {loading, error, request, clearError} = useHttp();
+  const {login} = useAuth();
 
   const validationSchema = yup.object().shape({
     username: yup.string(),
@@ -38,22 +38,15 @@ function LoginForm(props) {
   });
 
   let submitForm = async (values) => {
-    // let savedName = JSON.parse(localStorage.getItem('username'));
-    // if (values.username === savedName) {
-    //   localStorage.setItem('auth', true);
-    //   props.history.push("/")
-    // } else {
-    //   alert('something is wrong!');
-    // }
-
     clearError();
     try {
       const data = await request(
         '/api/auth/login',
         'POST',
         {username: values.username, password: values.password});
-      console.log(auth)
-      auth.login(data.token, data.userId)
+      // console.log(auth)
+      login(data.token, data.userId);
+      props.history.push("/");
     } catch (e) {}
   }
 
@@ -111,7 +104,7 @@ function LoginForm(props) {
               </label>
               {error && <div className={s.serverErrors}>{error}</div>}
             </div>
-            <button type="submit" disabled={!isValid && !dirty || loading} onClick={handleSubmit}>Enter</button>
+            <button type="submit" disabled={(!isValid && !dirty) || loading} onClick={handleSubmit}>Enter</button>
           </form>
         )}
 

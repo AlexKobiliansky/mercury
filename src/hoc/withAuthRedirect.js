@@ -1,22 +1,15 @@
-import React, {useCallback, useContext, useEffect} from 'react';
+import React from 'react';
 
 import {Redirect} from 'react-router-dom';
-import {AuthContext} from '../context/AuthContext';
 
 export const withAuthRedirect = (Component) => {
+  function RedirectComponent() {
+    const data = JSON.parse(localStorage.getItem('userData'));
+    const isAuthenticated = data && !!data.token
 
-    function RedirectComponent() {
-        // const auth = useContext(AuthContext);
-        //
-        // useEffect(() => {
-        //     if (!auth.isAuthenticated) {
-        //         return <Redirect to='/login'/>
-        //     }
-        // }, [auth])
+    if (!isAuthenticated) return <Redirect to='/login'/>
 
-        return <Component />
-
-    }
-
-    return RedirectComponent;
+    return <Component/>
+  }
+  return RedirectComponent;
 }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
 import {ReactSVG} from 'react-svg';
 
@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import {useHttp} from "../../../hooks/http.hook";
 
 
-function RegisterForm() {
+function RegisterForm(props) {
   const {loading, error, request, clearError, successMessage} = useHttp();
 
   const validationSchema = yup.object().shape({
@@ -43,7 +43,7 @@ function RegisterForm() {
   let submitForm = async (values) => {
     clearError();
     try {
-      const data = await request(
+        await request(
         '/api/auth/register',
         'POST',
         {username: values.username, password: values.password});

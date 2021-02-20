@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import {Route, Switch} from 'react-router-dom';
 
@@ -9,7 +9,6 @@ import Statistics from '../../../Statistics/Statistics';
 import Users from '../../../Users/Users';
 import Workflow from '../../../Workflow/Workflow';
 import s from './PageContent.module.sass';
-import {AuthContext} from '../../../../context/AuthContext';
 
 function PageContent() {
   return (
